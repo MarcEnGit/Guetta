@@ -2,15 +2,17 @@ import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion} from 'framer-motion';
-
+import { AnimatePresence, motion } from 'framer-motion';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 function Loading() {
     const [t, i18n] = useTranslation("global");
 
-    const filename = this.props.location.state;
-    console.log(filename);
+    const history = useHistory();
+
+    console.log(history.location.state.url);
+
         /*const formData = new FormData();
         var urlText = document.getElementById('urlText').value;
         setUrl(urlText);
@@ -49,7 +51,7 @@ function Loading() {
       initial={{opacity: 0}}
       animate={{opacity: 1}}
       exit={{opacity:0}}
-      >
+        >
       <div className="App">
         <div class="nav justify-content-end">
           <select className="dropdown" onChange={changeLanguage} id="selectBox">

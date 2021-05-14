@@ -31,10 +31,11 @@ function FunctionClickFile() {
                 formData
             );
             console.log(res);
-            if(res){
+            if (res) {
                 history.push({
-                    pathname: '/loading' ,
-                    uploadedFile: res.data});
+                    pathname: '/loading',
+                    state: { url: res.data }
+                });
             }
         } catch (ex) {
             console.log(ex);

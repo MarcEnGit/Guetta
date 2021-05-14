@@ -24,7 +24,7 @@ app.post("/upload", (req, res) => {
         if (err) {
             res.status(500).send({ message: "File upload failed", code: 200 });
         }
-        res.status(200).send({ message: "File Uploaded", code: 200 });
+        res.send(filename);
     });
 });
 
@@ -55,6 +55,6 @@ function ytToMp3(url,res){
           })
         .on('end', () => {
             console.log(`\ndone, thanks - ${(Date.now() - start) / 1000}s`);
-            res.send(url+" converted");
+            res.send(filename);
         });
 }
