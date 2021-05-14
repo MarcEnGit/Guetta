@@ -18,7 +18,7 @@ app.use(express.static("files"));
 
 app.post("/upload", (req, res) => {
     const file = req.files.file;
-    var filename = new Date().valueOf() + crypto.randomBytes(5).toString('hex');
+    var filename = new Date().valueOf() + crypto.randomBytes(5).toString('hex')+".mp3";
     var newpath = __dirname + "/files/";
     file.mv(`${newpath}${filename}`, (err) => {
         if (err) {
@@ -31,6 +31,10 @@ app.post("/upload", (req, res) => {
 app.post("/ytconvert", (req, res) => {
     const url = req.body.urlText;
     ytToMp3(url,res);
+});
+
+app.post("/separate", (req, res) => {
+
 });
 
 app.listen(3002, () => {
@@ -55,6 +59,27 @@ function ytToMp3(url,res){
           })
         .on('end', () => {
             console.log(`\ndone, thanks - ${(Date.now() - start) / 1000}s`);
-            res.send(filename);
+            res.send(filename+".mp3");
         });
+}
+
+function separate(filepath, filename, res) {
+    var conda_exec = "~/anaconda3/bin/conda";
+    var env_name = "demucs";
+    var sub_cmd = "~/anaconda3/envs/demucs/bin/python3.7 -m demucs.separate -d cpu --dl " + filepath;
+    var command = [conda_exec, 'run', '-n', env_name, sub_cmd] var spawn_ = spawn(command.join(" "), { shell: true });
+    console.log('Converting ' + filename);
+    spawn_.stdout.on('data', function (data) {
+        console.log(data.toString());
+    });
+    spawn_.stderr.on('data', function (data) {
+        console.log(data.toString());
+    });
+    spawn_.on('exit', function (code) {
+        console.log(code);
+        console.log('exit');
+        //res.redirect('/play'); 
+        res.redirect('/play?file=' + filename);
+    });
+
 }
