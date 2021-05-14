@@ -1,0 +1,216 @@
+.App {
+  text-align: center;
+  background-color: #ff0080;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.Privacy {
+  text-align: center;
+}
+
+.logo {
+  transform: translate(0%, -20%);
+  align-content: center;
+  justify-content: center;
+}
+
+.logoHorizontal {
+  width: 40%;
+  align-content: center;
+  justify-content: center;
+}
+
+.dropdowns {
+  display: flex;
+  justify-content: space-between;
+}
+
+.divLeft {
+  justify-content: flex-start;
+}
+
+.divRight {
+  justify-content: flex-end;
+  justify-content: flex-end;
+}
+
+.dropdown {
+  display: inline-block;
+  color: #343a40;
+  background-color: #ffffff;
+  border-color: #343a40;
+  border-radius: 0.25rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  align-self: baseline;
+  padding: 0.375rem 0.75rem;
+  width: 150%;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  margin-top: 17.5%;
+  margin-left: 30%;
+}
+
+.button1 {
+  width: 80px;
+  height: 50px;
+}
+
+.button1Main {
+  display: inline-block;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.divFunction {
+  display: block;
+  align-items: center;
+  transform: translate(0%, 30%);
+}
+
+.divButton {
+  display: block;
+  align-items: center;
+  transform: translate(0%, 70%);
+}
+
+.button2Main {
+  display: inline-block;
+  align-items: center;
+  margin: 0 10px;
+}
+
+.terms {
+  margin-right: 2%;
+  color: aliceblue;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.privacy {
+  color: aliceblue;
+  margin-left: 2%;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.parent {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 100%;
+  text-align: center;
+  bottom: 5%;
+  margin-top: 10%;
+  position: relative;
+}
+
+.parent2 {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  font-size: 100%;
+  text-align: center;
+  bottom: 5%;
+  margin-top: 10%;
+  position: fixed;
+}
+
+.navbar {
+  font-size: 130%;
+  list-style: none;
+  display: inline-block;
+}
+
+.buttonsMain {
+  padding: 4%;
+  align-items: center;
+  justify-content: center;
+  transform: translate(0%, -85%);
+}
+
+.inputFile {
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  padding: 0.4%;
+  background-color: #343a40;
+  border-color: #343a40;
+  border-radius: 0.25rem;
+}
+
+.inputURL {
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  padding: 0.4%;
+  width: 35%;
+  background-color: #343a40;
+  border-color: #343a40;
+  border-radius: 0.25rem;
+}
+
+.sendButton {
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  padding: 0.4%;
+  width: 10%;
+  background-color: #343a40;
+  border-color: #343a40;
+  border-radius: 0.25rem;
+}
+
+.text {
+  align-items: center;
+  margin-left: 15%;
+  margin-right: 15%;
+  text-align: justify;
+}
+
+h2 {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+  font-weight: bold;
+}
+
+.divBackground {
+  display: inline-block;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  color: #ffffff;
+  padding: 0.4%;
+  width: 35%;
+  background-color: #343a40;
+  border-color: #343a40;
+  border-radius: 0.25rem;
+}
+
+.buttonLight {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  color: #343a40;
+  padding: 0.4%;
+  width: 25%;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  border-radius: 0.25rem;
+}
+
+.customText {
+  align-self: center;
+  text-align: center;
+  margin-left: 5%;
+}

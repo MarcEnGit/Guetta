@@ -1,0 +1,14 @@
+{
+    "words": {
+        "button-url": "Paste a YouTube URL",
+        "button-upload": "Upload a MP3 track",
+        "terms": "Terms of use",
+        "privacy": "Privacy policy",
+        "home": "Home",
+        "aboutus": "About us",
+        "upload-url": "Upload URL",
+        "upload-file": "Upload File",
+        "no-file": "No File Chosen",
+        "chose-file": "Chose File"
+    }
+}

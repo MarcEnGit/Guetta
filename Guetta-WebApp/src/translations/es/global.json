@@ -1,0 +1,14 @@
+{
+    "words": {
+        "button-url": "Añade una URL de YouTube",
+        "button-upload": "Sube un archivo MP3",
+        "terms": "Términos de uso",
+        "privacy": "Política de privacidad",
+        "home": "Inicio",
+        "aboutus": "Nosotros",
+        "upload-url": "Subir URL",
+        "upload-file": "Subir Archivo",
+        "no-file": "No Hay Ningún Archivo",
+        "chose-file": "Escoge Un Archivo"
+    }
+}
