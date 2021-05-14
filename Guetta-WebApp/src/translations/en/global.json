@@ -9,6 +9,7 @@
         "upload-url": "Upload URL",
         "upload-file": "Upload File",
         "no-file": "No File Chosen",
-        "chose-file": "Chose File"
+        "chose-file": "Chose File",
+        "link": "Your song is being processed, enter this page in a while:"
     }
 }

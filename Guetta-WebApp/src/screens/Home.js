@@ -69,6 +69,9 @@ function Home() {
               <li class="nav-item">
                 <Link class="nav-link" style={{color: '#fff'}} to="/aboutus">{t("words.aboutus")}</Link>
               </li>
+              <li class="nav-item">
+                <Link class="nav-link" style={{color: '#fff'}} to="/loading">Loading</Link>
+              </li>
             </div>
           </ul>
         </div> 

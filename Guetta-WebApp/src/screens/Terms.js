@@ -31,22 +31,26 @@ function Terms() {
     exit={{opacity:0}}
     >
     <div className="App">
-      <div class="nav justify-content-end">
-        <select className="dropdown" onChange={changeLanguage} id="selectBox">
-          <option value="1">Español</option>
-          <option value="2">Català</option>
-          <option selected value="3">English</option>
-        </select>
-        <ul>
-          <div className="navbar">
-            <li class="nav-item">
-              <Link class="nav-link active" style={{color: '#fff'}} to="/">{t("words.home")}</Link>
-            </li>
-            <li class="nav-item">
-              <Link class="nav-link" style={{color: '#fff'}} to="/aboutus">{t("words.aboutus")}</Link>
-            </li>
-          </div>
-        </ul>
+      <div className="dropdowns">
+        <div className="divLeft" >
+          <select className="dropdown" onChange={changeLanguage} id="selectBox">
+            <option value="1">Español</option>
+            <option value="2">Català</option>
+            <option selected value="3">English</option>
+          </select>
+        </div>
+        <div className="divRight">
+          <ul>
+            <div className="navbar">
+              <li class="nav-item">
+                <Link class="nav-link active" style={{color: '#fff'}} to="/">{t("words.home")}</Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" style={{color: '#fff'}} to="/aboutus">{t("words.aboutus")}</Link>
+              </li>
+            </div>
+          </ul>
+        </div> 
       </div>        
         <img src={logo} className="logoHorizontal" alt="logo" />
         <h2>TERMS OF USE</h2><br/>
