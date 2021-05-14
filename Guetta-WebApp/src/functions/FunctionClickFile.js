@@ -66,7 +66,7 @@ function FunctionClickFile() {
     return (
         <div className="divFunction">
             <div className="divBackground">
-                <input type="file" onChange={saveFile} hidden id="real-file"></input>
+                <input type="file" accept=".mp3*" onChange={saveFile} hidden id="real-file"></input>
                 <button type="button" className="buttonLight" onClick={changeButton} id="custom-button">{t("words.chose-file")}</button>
                 <span id="custom-text" className="customText" >{t("words.no-file")}</span>
             </div>

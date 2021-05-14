@@ -42,7 +42,6 @@ function FunctionClickURL() {
         }
     };
 
-
    
     return (
         <div className="divFunction">
