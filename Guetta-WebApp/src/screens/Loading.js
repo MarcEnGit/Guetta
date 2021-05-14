@@ -93,7 +93,7 @@ function Loading() {
           {t("words.link")}
         </p>
       </div>
-      <div className="parent2">
+      <div className="parent">
         <Link className="terms" to="/terms">{t("words.terms")}</Link>
         <Link className="privacy" to="/privacy">{t("words.privacy")}</Link>
       </div>
