@@ -16,11 +16,6 @@ function FunctionClickFile() {
 
     const history = useHistory();
 
-    const saveFile = (e) => {
-        setFile(e.target.files[0]);
-        setFileName(e.target.files[0].name);
-    };
-
     const uploadFile = async (e) => {
         const formData = new FormData();
         formData.append("file", file);
@@ -46,17 +41,13 @@ function FunctionClickFile() {
     const changeButton = () => {
         var realFileBtn = document.getElementById("real-file");
 
-        var customBtn = document.getElementById("custom-button");
-
         var customTxt = document.getElementById("custom-text");
 
-        customBtn.addEventListener("click", function(){
-            realFileBtn.click();
-        })
+        realFileBtn.click();
     
         realFileBtn.addEventListener("change", function() {
             if(realFileBtn.value) {
-                customTxt.innerHTML = realFileBtn.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1];
+                customTxt.innerHTML = realFileBtn.value.replace(/^.*[\\\/]/, '');
             } else {
                 customTxt.innerHTML = "No file chosen.";
             }
@@ -66,7 +57,7 @@ function FunctionClickFile() {
     return (
         <div className="divFunction">
             <div className="divBackground">
-                <input type="file" accept=".mp3*" onChange={saveFile} hidden id="real-file"></input>
+                <input type="file" accept=".mp3" hidden id="real-file"></input>
                 <button type="button" className="buttonLight" onClick={changeButton} id="custom-button">{t("words.chose-file")}</button>
                 <span id="custom-text" className="customText" >{t("words.no-file")}</span>
             </div>
