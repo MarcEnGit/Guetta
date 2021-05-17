@@ -49,7 +49,7 @@ function FunctionClickFile() {
             if(realFileBtn.value) {
                 customTxt.innerHTML = realFileBtn.value.replace(/^.*[\\\/]/, '');
             } else {
-                customTxt.innerHTML = "No file chosen.";
+                customTxt.innerHTML = t("words.no-file");
             }
         })
     }
