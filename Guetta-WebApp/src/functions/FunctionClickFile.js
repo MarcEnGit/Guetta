@@ -22,7 +22,7 @@ function FunctionClickFile() {
         formData.append("fileName", fileName);
         try {
             const res = await axios.post(
-                "http://localhost:3002/upload",
+                "http://35.205.50.110:3002/upload",
                 formData
             );
             console.log(res);
