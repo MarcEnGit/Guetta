@@ -15,7 +15,7 @@ function FunctionClickURL() {
         formData.append("urlText", urlText);
         try {
             const res = await axios.post(
-                "http://localhost:3002/ytconvert",
+                "http://35.205.50.110:3002/ytconvert",
                 formData
             );
             console.log(res.data);
