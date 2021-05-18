@@ -3,10 +3,9 @@ import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { motion} from 'framer-motion';
-
 import { useTranslation } from 'react-i18next';
 
-function AboutUs() {
+function Error() {
   const [t, i18n] = useTranslation("global");
 
   const changeLanguage = () => {
@@ -53,27 +52,14 @@ function AboutUs() {
         </div> 
       </div>
       <img src={logo} className="logoHorizontal" alt="logo" />
-      <h2>ABOUT US</h2><br/>
-      <h5 className="text">
-      With Guetta you have at your fingertips the possibility of getting all the sounds of your
-favorite songs.<br/><br/>
 
-Millions of people around the world feel limited when it comes to
-create your own musical projects based on different songs. Guetta
-It will help them to do their new songs with a high quality.<br/><br/>
-
-Our objective is to provide music by and for everyone. What are you waiting for
-enjoy Guetta?<br/><br/><br/><br/><br/><br/><br/>
-      </h5>
       <div className="parent2">
         <Link className="terms" to="./terms">{t("words.terms")}</Link>
         <Link className="privacy" to="./privacy">{t("words.privacy")}</Link>
       </div>
-      <br/>
-      <br/>
     </div>
     </motion.div>
   );
 }
 
-export default AboutUs;
+export default Error;

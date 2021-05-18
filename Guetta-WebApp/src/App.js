@@ -8,6 +8,7 @@ import Privacy from './screens/Privacy';
 import Terms from './screens/Terms';
 import AboutUs from './screens/AboutUs';
 import Loading from './screens/Loading';
+import Error from './screens/Error';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
            <Route path="/terms" component={Terms}></Route>
            <Route path="/aboutus" component={AboutUs}></Route>
            <Route path="/loading" component={Loading}></Route>
+           
         </div>
     </Router>
     </AnimatePresence>

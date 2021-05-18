@@ -10,6 +10,8 @@
         "upload-file": "Upload File",
         "no-file": "No File Chosen",
         "chose-file": "Chose File",
-        "link": "Your song is being processed, enter this page in a while:"
+        "link": "Your song is being processed, enter this page in a while:",
+        "email": "Enter your email to warn you when the song is done.",
+        "upload-email": "Upload Email"
     }
 }

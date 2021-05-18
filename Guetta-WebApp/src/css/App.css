@@ -76,6 +76,12 @@
   transform: translate(0%, 70%);
 }
 
+.divEmail {
+  display: block;
+  align-items: center;
+  transform: translate(0%, 100%);
+}
+
 .button2Main {
   display: inline-block;
   align-items: center;
@@ -217,7 +223,7 @@ h2 {
 
 .loadingSvg {
   align-self: center;
-  margin-top: -3%;
+  margin-top: -5%;
 }
 
 svg {
@@ -227,9 +233,20 @@ svg {
 .loadingText {
   align-self: center;
   text-align: center;
-  margin-top: 8%;
+  margin-top: 5%;
 }
 
 p {
   color: #ffffff;
+}
+
+.inputText{
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  padding: 0.4%;
+  width: 22.5%;
+  background-color: #343a40;
+  border-color: #343a40;
+  border-radius: 0.25rem;
 }

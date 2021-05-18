@@ -3,9 +3,10 @@ import '../css/App.css';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+
 function FunctionClickURL() {
-    const [url, setUrl] = useState('');
-    const [t, i18n] = useTranslation("global");
+    const [setUrl] = useState('');
+    const [t] = useTranslation("global");
     const history = useHistory();
 
     const [disable, setDisable] = useState(false);
@@ -34,9 +35,9 @@ function FunctionClickURL() {
         }
         setDisable(false)
     }
+
     const handleKeypress = e => {
         if (e.keyCode === 13) {
-            console.log('hola grupo')
             uploadUrl()
         }
     };

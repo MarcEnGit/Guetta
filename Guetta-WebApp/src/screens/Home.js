@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import FunctionClickFile from '../functions/FunctionClickFile';
 import FunctionClickUrl from '../functions/FunctionClickUrl';
 import React, {useState} from 'react';
-import { AnimatePresence, motion} from 'framer-motion';
+import { motion} from 'framer-motion';
 
 import { useTranslation } from 'react-i18next';
 
@@ -55,7 +55,7 @@ function Home() {
       <div className="dropdowns">
         <div className="divLeft" >
           <select className="dropdown" onChange={changeLanguage} id="selectBox">
-            <option value="1">Español</option>
+            <option value="1">Castellano</option>
             <option value="2">Català</option>
             <option selected value="3">English</option>
           </select>

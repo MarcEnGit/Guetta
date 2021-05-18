@@ -2,7 +2,7 @@ import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion} from 'framer-motion';
+import { motion} from 'framer-motion';
 
 import { useTranslation } from 'react-i18next';
 
@@ -34,7 +34,7 @@ function Privacy() {
       <div className="dropdowns">
         <div className="divLeft" >
           <select className="dropdown" onChange={changeLanguage} id="selectBox">
-            <option value="1">Español</option>
+            <option value="1">Castellano</option>
             <option value="2">Català</option>
             <option selected value="3">English</option>
           </select>

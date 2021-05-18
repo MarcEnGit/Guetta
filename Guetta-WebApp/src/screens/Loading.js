@@ -3,14 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "../img/logo_vertical.png";
 import { Link } from 'react-router-dom';
 import React, {useState} from 'react';
-import { useHistory } from 'react-router-dom';
-import { AnimatePresence, motion} from 'framer-motion';
-import axios from 'axios';
-
+import { motion} from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 function Loading() {
   const [t, i18n] = useTranslation("global");
+  const [setEmail] = useState('');
 
     const history = useHistory();
     const formData = new FormData();
@@ -52,6 +52,23 @@ function Loading() {
     
     separate();
 
+    const uploadEmail = async (e) => {
+      console.log('press')
+      const formData = new FormData();
+      var emailText = document.getElementById('urlText').value;
+      setEmail(emailText);
+      formData.append("emailText", emailText);
+      try {
+          const res = await axios.post(
+              "http://localhost:3002/sendemail",
+              formData
+          );
+          console.log(res.data);
+      } catch (ex) {
+          console.log(ex);
+      }
+  }
+
   return (
     <motion.div
     initial={{opacity: 0}}
@@ -62,7 +79,7 @@ function Loading() {
         <div className="dropdowns">
           <div className="divLeft" >
             <select className="dropdown" onChange={changeLanguage} id="selectBox">
-              <option value="1">Español</option>
+              <option value="1">Castellano</option>
               <option value="2">Català</option>
               <option selected value="3">English</option>
             </select>
@@ -109,6 +126,12 @@ function Loading() {
           <p>
             {t("words.link")}
           </p>
+        </div>
+        <div className="divEmail">
+            <input id="emailText" className="inputText" type="text" placeholder={t("words.email")}  />
+            <div className="divButton">
+                <button class="btn btn-dark" onClick={uploadEmail} type="submit">{t("words.upload-email")}</button>
+            </div>
         </div>
         <div className="parent">
           <Link className="terms" to="/terms">{t("words.terms")}</Link>

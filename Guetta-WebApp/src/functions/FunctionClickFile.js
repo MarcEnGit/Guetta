@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import '../css/App.css';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
@@ -6,13 +6,10 @@ import axios from 'axios';
 
 
 function FunctionClickFile() {
-    const [file, setFile] = useState();
-    const [fileName, setFileName] = useState("");
+    const [file] = useState();
+    const [fileName] = useState("");
 
-    const [t, i18n] = useTranslation("global"); 
-
-    const [selectedFile, setSelectedFile] = useState();
-	const [isSelected, setIsSelected] = useState(false);
+    const [t] = useTranslation("global");
 
     const history = useHistory();
 
