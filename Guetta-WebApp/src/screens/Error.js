@@ -52,6 +52,10 @@ function Error() {
         </div> 
       </div>
       <img src={logo} className="logoHorizontal" alt="logo" />
+      <h3>404. That's an error.</h3>
+      <br/>
+      <h5>The requested URL was not found on this server.</h5>
+      <h5>That's all we know</h5>
 
       <div className="parent2">
         <Link className="terms" to="./terms">{t("words.terms")}</Link>
