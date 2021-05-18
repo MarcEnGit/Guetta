@@ -38,9 +38,30 @@ function fileNameAndExt(str){
   console.log(file);
   return file[0];
 }
+
 app.post("/separate", async (req, res) => {
     const url = req.body.filename;
     await separate("files/"+url,url,res);
+});
+
+app.get('/play', (req, res) => {
+    try{
+        var file = fileNameAndExt(req.query.file);
+        var route = "/home/marc_ortiz_7e3/Guetta-master/api/separated/demucs_quantized/"+file;
+        var array = fs.readdirSync(route);
+        console.log(array);
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        for (var src  of array) {
+            console.log(file+'/'+src)
+            res.write('<audio controls>');
+            res.write('<source src=\"http://35.205.50.110:3002/' +file+'/'+src +'\" type="audio/ogg">');
+            res.write('</audio>');
+            res.write('<p><a href=\"http://35.205.50.110:3002/' +file+'/'+src+'\" download>'+src+'</p>');
+        }
+        res.end();
+    }catch(e){
+        console.log(e);
+    }
 });
 
 app.listen(3002, () => {
