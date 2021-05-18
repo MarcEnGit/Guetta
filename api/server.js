@@ -14,7 +14,7 @@ const app = express();
 
 app.use(cors());
 app.use(fileupload());
-app.use(express.static("files"));
+app.use(express.static("separated/demucs_quantized/"));
 
 app.post("/upload", (req, res) => {
     const file = req.files.file;
@@ -33,8 +33,14 @@ app.post("/ytconvert", (req, res) => {
     ytToMp3(url,res);
 });
 
-app.post("/separate", (req, res) => {
-
+function fileNameAndExt(str){
+  var file = str.split('.');
+  console.log(file);
+  return file[0];
+}
+app.post("/separate", async (req, res) => {
+    const url = req.body.filename;
+    await separate("files/"+url,url,res);
 });
 
 app.listen(3002, () => {
@@ -66,8 +72,9 @@ function ytToMp3(url,res){
 function separate(filepath, filename, res) {
     var conda_exec = "~/anaconda3/bin/conda";
     var env_name = "demucs";
-    var sub_cmd = "~/anaconda3/envs/demucs/bin/python3.7 -m demucs.separate -d cpu --dl " + filepath;
-    var command = [conda_exec, 'run', '-n', env_name, sub_cmd] var spawn_ = spawn(command.join(" "), { shell: true });
+    var sub_cmd = "~/anaconda3/envs/demucs/bin/python3.7 -m demucs.separate -d cpu " + filepath;
+    var command = [conda_exec, 'run', '-n', env_name, sub_cmd];
+    var spawn_ = spawn(command.join(" "), { shell: true });
     console.log('Converting ' + filename);
     spawn_.stdout.on('data', function (data) {
         console.log(data.toString());
@@ -78,8 +85,7 @@ function separate(filepath, filename, res) {
     spawn_.on('exit', function (code) {
         console.log(code);
         console.log('exit');
-        //res.redirect('/play'); 
+        console.log(filename+' separated');
         res.redirect('/play?file=' + filename);
     });
-
 }
