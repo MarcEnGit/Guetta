@@ -16,7 +16,10 @@ function FunctionClickFile() {
 
     const history = useHistory();
 
+    const [disable, setDisable] = useState(false);
+
     const uploadFile = async (e) => {
+        setDisable(true)
         const formData = new FormData();
         formData.append("file", file);
         formData.append("fileName", fileName);
@@ -35,6 +38,7 @@ function FunctionClickFile() {
         } catch (ex) {
             console.log(ex);
         }
+        setDisable(false)
     }
 
 
@@ -62,7 +66,7 @@ function FunctionClickFile() {
                 <span id="custom-text" className="customText" >{t("words.no-file")}</span>
             </div>
             <div className="divButton">
-                <button class="btn btn-dark" onClick={uploadFile} type="submit">{t("words.upload-file")}</button>
+                <button class="btn btn-dark" onClick={uploadFile} disabled={disable} type="submit">{t("words.upload-file")}</button>
             </div>
         </div>
     )

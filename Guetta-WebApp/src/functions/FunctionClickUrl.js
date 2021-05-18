@@ -7,7 +7,11 @@ function FunctionClickURL() {
     const [url, setUrl] = useState('');
     const [t, i18n] = useTranslation("global");
     const history = useHistory();
+
+    const [disable, setDisable] = useState(false);
+
     const uploadUrl = async (e) => {
+        setDisable(true)
         console.log('press')
         const formData = new FormData();
         var urlText = document.getElementById('urlText').value;
@@ -28,6 +32,7 @@ function FunctionClickURL() {
         } catch (ex) {
             console.log(ex);
         }
+        setDisable(false)
     }
     const handleKeypress = e => {
         if (e.keyCode === 13) {
@@ -42,7 +47,7 @@ function FunctionClickURL() {
         <div className="divFunction">
             <input id="urlText" className="inputURL" type="text" placeholder={t("words.button-url")} onKeyDown={handleKeypress} />
             <div className="divButton">
-                <button class="btn btn-dark" onClick={uploadUrl} type="submit">{t("words.upload-url")}</button>
+                <button class="btn btn-dark" onClick={uploadUrl} disabled={disable} type="submit">{t("words.upload-url")}</button>
             </div>
         </div>
     )
