@@ -11,14 +11,28 @@ import { useTranslation } from 'react-i18next';
 function Loading() {
   const [t, i18n] = useTranslation("global");
 
-    /*const history = useHistory();
-
-      console.log(history.location.state.url);
-
-      const formData = new FormData();  
-      var urlText = document.getElementById('urlText').value;
-      setUrl(urlText);
-      formData.append("urlText", urlText);*/
+    const history = useHistory();
+    const formData = new FormData();
+    formData.append("filename", history.location.state.url);
+    console.log(history.location.state.url);
+    const separate = async (e) => {
+    try {
+            const res = await axios.post(
+                "http://35.205.50.110:3002/separate",
+                formData
+            );
+            console.log(res.data);
+            if(res){
+                console.log('push de final');
+                history.push({
+                    pathname: '/',
+                    state: { url:res.data }
+                });
+            }
+        } catch (ex) {
+            console.log(ex);
+        }
+    }
 
     const changeLanguage = () => {
       var selectBox = document.getElementById("selectBox");
@@ -34,6 +48,8 @@ function Loading() {
         i18n.changeLanguage("en")
       }
     }
+    
+    separate();
 
   return (
     <motion.div
