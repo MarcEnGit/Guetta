@@ -6,11 +6,34 @@ const ms = require('mediaserver');
 const readline = require('readline');
 const ytdl = require('ytdl-core');
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+ffmpeg.setFfmpegPath(ffmpegPath);
 const ffmpeg = require('fluent-ffmpeg')
 const getVideoId = require('get-video-id');
-ffmpeg.setFfmpegPath(ffmpegPath);
-
+const sqlite3 = require('sqlite3').verbose()
 const app = express();
+
+const DBSOURCE = "db.sqlite"
+var insert = 'INSERT INTO emails(filename, email) VALUES (?,?)'
+
+
+let db = new sqlite3.Database(DBSOURCE, (err) => {
+    if (err) {
+      console.error(err.message)
+      throw err
+    }else{
+        console.log('Connected to the SQLite database.')
+        db.run(`CREATE TABLE emails (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            filename text,
+            email text
+            )`,
+        (err) => {
+            if (err) {
+                console.log(err);
+            }
+         });
+    }
+});
 
 app.use(cors());
 app.use(fileupload());
@@ -64,6 +87,13 @@ app.get('/play', (req, res) => {
     }
 });
 
+app.post("/sendmail", (req, res) => {
+        var filename = fileNameAndExt(req.body.filename);
+        var email = req.body.email;
+        console.log(email)
+        db.run(insert,[filename,email]);
+});
+
 app.listen(3002, () => {
     console.log("Server running successfully on 3002");
 });
@@ -107,6 +137,20 @@ function separate(filepath, filename, res) {
         console.log(code);
         console.log('exit');
         console.log(filename+' separated');
+        getmail(filename);
         res.redirect('/play?file=' + filename);
+    });
+}
+
+function getmail(filename){
+    var sql = 'select email from emails where filename = "'+fileNameAndExt(filename)+'"';
+    var params = [];
+    db.all(sql, params, (err, rows) => {
+        if (err) {
+          console.log(err);
+        }
+        //enviar mail
+        console.log(rows);
+      });
     });
 }
