@@ -52,7 +52,7 @@ function Loading() {
     separate();
 
     const uploadEmail = async (e) => {
-      var emailText = document.getElementById('urlText').value;
+      var emailText = document.getElementById('emailText').value;
       setEmail(emailText);
       formData.append("email", email);
       try {
