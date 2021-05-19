@@ -7,10 +7,11 @@ const readline = require('readline');
 const spawn = require("child_process").spawn;
 const ytdl = require('ytdl-core');
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
+const ffmpeg = require('fluent-ffmpeg');
 ffmpeg.setFfmpegPath(ffmpegPath);
-const ffmpeg = require('fluent-ffmpeg')
 const getVideoId = require('get-video-id');
-const sqlite3 = require('sqlite3').verbose()
+const sqlite3 = require('sqlite3').verbose();
+const fs = require('fs');
 const app = express();
 
 const DBSOURCE = "db.sqlite"
