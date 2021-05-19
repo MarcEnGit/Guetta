@@ -15,7 +15,6 @@ function Loading() {
     const history = useHistory();
     const formData = new FormData();
     formData.append("filename", history.location.state.url);
-    console.log(history.location.state.url);
     const separate = async (e) => {
     try {
             const res = await axios.post(
@@ -53,17 +52,14 @@ function Loading() {
     separate();
 
     const uploadEmail = async (e) => {
-      console.log('press')
-      const formData = new FormData();
       var emailText = document.getElementById('urlText').value;
       setEmail(emailText);
-      formData.append("emailText", emailText);
+      formData.append("email", email);
       try {
           const res = await axios.post(
-              "http://localhost:3002/sendemail",
+              "http://localhost:3002/sendmail",
               formData
           );
-          console.log(res.data);
       } catch (ex) {
           console.log(ex);
       }
