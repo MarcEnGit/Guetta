@@ -79,7 +79,7 @@
 .divEmail {
   display: block;
   align-items: center;
-  transform: translate(0%, 100%);
+  transform: translate(0%, 50%);
 }
 
 .button2Main {

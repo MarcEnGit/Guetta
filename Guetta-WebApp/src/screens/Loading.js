@@ -14,7 +14,8 @@ function Loading() {
 
     const history = useHistory();
     const formData = new FormData();
-    formData.append("filename", history.location.state.url);
+    //formData.append("filename", history.location.state.url);
+    //console.log(history.location.state.url);
     const separate = async (e) => {
     try {
             const res = await axios.post(
@@ -51,14 +52,13 @@ function Loading() {
     
     separate();
 
+    const [disable, setDisable] = useState(false);
+
     const uploadEmail = async (e) => {
-<<<<<<< HEAD
-        var email = document.getElementById('emailText').value;
-      setEmail(email);
-=======
+      setDisable(true)
+      console.log('press')
       var emailText = document.getElementById('emailText').value;
       setEmail(emailText);
->>>>>>> a67102cda1a9faabdca17ec37cc41ebdffedec4e
       formData.append("email", email);
       try {
           const res = await axios.post(
@@ -68,6 +68,7 @@ function Loading() {
       } catch (ex) {
           console.log(ex);
       }
+      setDisable(false);
   }
 
   return (
@@ -129,10 +130,13 @@ function Loading() {
           </p>
         </div>
         <div className="divEmail">
-            <input id="emailText" className="inputText" type="text" placeholder={t("words.email")}  />
-            <div className="divButton">
-                <button class="btn btn-dark" onClick={uploadEmail} type="submit">{t("words.upload-email")}</button>
-            </div>
+          <p>
+            {t("words.email")}
+          </p>
+          <input id="emailText" className="inputText" type="text" />
+          <div className="divButton">
+            <button class="btn btn-dark" onClick={uploadEmail} disabled={disable} type="submit">{t("words.upload-email")}</button>
+          </div>
         </div>
         <div className="parent">
           <Link className="terms" to="/terms">{t("words.terms")}</Link>
