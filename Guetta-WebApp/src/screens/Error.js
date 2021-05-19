@@ -4,9 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { motion} from 'framer-motion';
 
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 
 function Error() {
   const [t, i18n] = useTranslation("global");
+
+  const history = useHistory();
 
   return (
     <motion.div
@@ -15,7 +18,7 @@ function Error() {
     exit={{opacity:0}}
     >
     <div className="App">
-      <img src={logo} className="logoHorizontal" alt="logo" />
+      <img src={logo} className="logoHorizontal" onClick={() => {history.push("/")}} alt="logo" />
       <h3>{t("words.error-1")}</h3>
       <br/>
       <h5>{t("words.error-2")}</h5>
