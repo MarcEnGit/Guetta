@@ -52,8 +52,13 @@ function Loading() {
     separate();
 
     const uploadEmail = async (e) => {
+<<<<<<< HEAD
         var email = document.getElementById('emailText').value;
       setEmail(email);
+=======
+      var emailText = document.getElementById('emailText').value;
+      setEmail(emailText);
+>>>>>>> a67102cda1a9faabdca17ec37cc41ebdffedec4e
       formData.append("email", email);
       try {
           const res = await axios.post(
