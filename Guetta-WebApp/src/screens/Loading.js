@@ -14,8 +14,7 @@ function Loading() {
 
     const history = useHistory();
     const formData = new FormData();
-    //formData.append("filename", history.location.state.url);
-    //console.log(history.location.state.url);
+    formData.append("filename", history.location.state.url);
     const separate = async (e) => {
     try {
             const res = await axios.post(
