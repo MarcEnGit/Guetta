@@ -15,20 +15,6 @@ function App() {
   return (
     <AnimatePresence>
     <Router>
-<<<<<<< Updated upstream
-      <Switch>
-        <div className="App">
-           <Route exact path="/" component={Home}></Route>
-           <Route path="/privacy" component={Privacy}></Route>
-           <Route path="/terms" component={Terms}></Route>
-           <Route path="/aboutus" component={AboutUs}></Route>
-           <Route path="/loading" component={Loading}></Route>
-           <Route path="/files" component={Files}></Route>
-           <Route path="/404" component={Error}></Route>
-           
-           
-        </div>
-=======
       <div className="App">
         <Switch>
           <Route exact path="/" component={Home}></Route>
@@ -38,7 +24,6 @@ function App() {
           <Route path="/loading" component={Loading}></Route>
           <Route path="/files" component={Files}></Route>
           <Route path="" component={Error}></Route>
->>>>>>> Stashed changes
         </Switch>
         </div> 
     </Router>
