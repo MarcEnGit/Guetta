@@ -15,6 +15,9 @@
         "upload-email": "Upload Email",
         "text-about-us1": "With Guetta you have at your fingertips the possibility of getting all the sounds of your favorite songs.",
         "text-about-us2": "Millions of people around the world feel limited when it comes to create your own musical projects based on different songs. Guetta it will help them to do their new songs with a high quality.",
-        "text-about-us3": "Our objective is to provide music by and for everyone. What are you waiting for enjoy Guetta?"
+        "text-about-us3": "Our objective is to provide music by and for everyone. What are you waiting for enjoy Guetta?",
+        "error-1": "404. That's an error.",
+        "error-2": "The requested URL was not found on this server.",
+        "error-3": "That's all we know"
     }
 }
