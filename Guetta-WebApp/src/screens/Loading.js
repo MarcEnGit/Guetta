@@ -10,7 +10,7 @@ import axios from 'axios';
 
 function Loading() {
   const [t, i18n] = useTranslation("global");
-  const [setEmail] = useState('');
+  const [email, setEmail] = useState('');
 
     const history = useHistory();
     const formData = new FormData();
@@ -18,7 +18,7 @@ function Loading() {
     const separate = async (e) => {
     try {
             const res = await axios.post(
-                "http://35.205.50.110:3002/separate",
+                "http://localhost:3002/separate",
                 formData
             );
             console.log(res.data);
@@ -52,8 +52,8 @@ function Loading() {
     separate();
 
     const uploadEmail = async (e) => {
-      var emailText = document.getElementById('urlText').value;
-      setEmail(emailText);
+        var email = document.getElementById('emailText').value;
+      setEmail(email);
       formData.append("email", email);
       try {
           const res = await axios.post(

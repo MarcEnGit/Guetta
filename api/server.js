@@ -1,16 +1,19 @@
 const express = require("express");
+const spawn = require("child_process").spawn;
 const fileupload = require("express-fileupload");
 const cors = require("cors");
 const crypto = require('crypto');
 const ms = require('mediaserver');
 const readline = require('readline');
 const ytdl = require('ytdl-core');
+const fs = require('fs');
 const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
-ffmpeg.setFfmpegPath(ffmpegPath);
 const ffmpeg = require('fluent-ffmpeg')
 const getVideoId = require('get-video-id');
 const sqlite3 = require('sqlite3').verbose()
 const app = express();
+
+ffmpeg.setFfmpegPath(ffmpegPath);
 
 const DBSOURCE = "db.sqlite"
 var insert = 'INSERT INTO emails(filename, email) VALUES (?,?)'
@@ -22,7 +25,7 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
       throw err
     }else{
         console.log('Connected to the SQLite database.')
-        db.run(`CREATE TABLE emails (
+        db.run(`CREATE TABLE IF NOT EXISTS emails (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             filename text,
             email text
@@ -91,7 +94,7 @@ app.post("/sendmail", (req, res) => {
         var filename = fileNameAndExt(req.body.filename);
         var email = req.body.email;
         console.log(email)
-        db.run(insert,[filename,email]);
+        db.run(insert, [filename, email]);
 });
 
 app.listen(3002, () => {
@@ -145,12 +148,13 @@ function separate(filepath, filename, res) {
 function getmail(filename){
     var sql = 'select email from emails where filename = "'+fileNameAndExt(filename)+'"';
     var params = [];
+
+
     db.all(sql, params, (err, rows) => {
         if (err) {
           console.log(err);
         }
         //enviar mail
-        console.log(rows);
+        console.log("[getmail] :"+rows);
       });
-    });
-}
+    };

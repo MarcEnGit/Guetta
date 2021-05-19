@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function FunctionClickURL() {
-    const [setUrl] = useState('');
+    const [url, setUrl] = useState('');
     const [t] = useTranslation("global");
     const history = useHistory();
 
@@ -20,7 +20,7 @@ function FunctionClickURL() {
         formData.append("urlText", urlText);
         try {
             const res = await axios.post(
-                "http://35.205.50.110:3002/ytconvert",
+                "http://localhost:3002/ytconvert",
                 formData
             );
             console.log(res.data);
