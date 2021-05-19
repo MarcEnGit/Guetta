@@ -15,6 +15,9 @@
         "upload-email": "Subir Correo",
         "text-about-us1": "Con Guetta tienes a tu alcance la posibilidad de conseguir todos los sonidos de tus canciones favoritas.",
         "text-about-us2": "Millones de personas en todo el mundo se sienten limitadas a la hora de crear sus propios proyectos musicales basados ​​en diferentes canciones. Guetta les ayudará a hacer sus nuevas canciones con alta calidad.",
-        "text-about-us3": "Nuestro objetivo es brindar música por y para todos. Qué estas esperando para disfrutar de Guetta?"
+        "text-about-us3": "Nuestro objetivo es brindar música por y para todos. Qué estas esperando para disfrutar de Guetta?",
+        "error-1": "404. Error.",
+        "error-2": "La URL solicitada no se encontró en este servidor.",
+        "error-3": "Eso es todo lo que sabemos."
     }
 }

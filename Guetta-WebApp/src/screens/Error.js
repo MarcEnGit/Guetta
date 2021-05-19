@@ -1,27 +1,12 @@
 import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
 import { motion} from 'framer-motion';
+
 import { useTranslation } from 'react-i18next';
 
 function Error() {
   const [t, i18n] = useTranslation("global");
-
-  const changeLanguage = () => {
-    var selectBox = document.getElementById("selectBox");
-    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-
-    if (selectedValue === "1"){
-      i18n.changeLanguage("es")
-    }
-    if (selectedValue === "2"){
-      i18n.changeLanguage("cat")
-    }
-    if (selectedValue === "3"){
-      i18n.changeLanguage("en")
-    }
-  }
 
   return (
     <motion.div
@@ -30,37 +15,11 @@ function Error() {
     exit={{opacity:0}}
     >
     <div className="App">
-      <div className="dropdowns">
-        <div className="divLeft" >
-          <select className="dropdown" onChange={changeLanguage} id="selectBox">
-            <option value="1">Castellano</option>
-            <option value="2">Català</option>
-            <option selected value="3">English</option>
-          </select>
-        </div>
-        <div className="divRight">
-          <ul>
-            <div className="navbar">
-              <li class="nav-item">
-                <Link class="nav-link active" style={{color: '#fff'}} to="/">{t("words.home")}</Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" style={{color: '#fff'}} to="/aboutus">{t("words.aboutus")}</Link>
-              </li>
-            </div>
-          </ul>
-        </div> 
-      </div>
       <img src={logo} className="logoHorizontal" alt="logo" />
-      <h3>404. That's an error.</h3>
+      <h3>{t("words.error-1")}</h3>
       <br/>
-      <h5>The requested URL was not found on this server.</h5>
-      <h5>That's all we know</h5>
-
-      <div className="parent2">
-        <Link className="terms" to="./terms">{t("words.terms")}</Link>
-        <Link className="privacy" to="./privacy">{t("words.privacy")}</Link>
-      </div>
+      <h5>{t("words.error-2")}</h5>
+      <h5>{t("words.error-3")}</h5>
     </div>
     </motion.div>
   );
