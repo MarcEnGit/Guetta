@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function FunctionClickURL() {
-    const [setUrl] = useState('');
+    const [url, setUrl] = useState('');
     const [t] = useTranslation("global");
     const history = useHistory();
 

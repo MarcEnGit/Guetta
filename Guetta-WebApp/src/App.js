@@ -1,7 +1,6 @@
 import '../src/css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AnimatePresence} from 'framer-motion';
-
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
 import Home from './screens/Home';
 import Privacy from './screens/Privacy';
@@ -24,8 +23,8 @@ function App() {
            <Route path="/loading" component={Loading}></Route>
            <Route path="/files" component={Files}></Route>
            <Route path="/404" component={Error}></Route>
-           <Redirect to="/404"></Redirect>
-
+           
+           
         </div>
         </Switch>
     </Router>
