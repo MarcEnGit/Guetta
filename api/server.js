@@ -11,6 +11,7 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg')
 const getVideoId = require('get-video-id');
 const sqlite3 = require('sqlite3').verbose();
+const nodemailer = require('nodemailer');
 const app = express();
 
 ffmpeg.setFfmpegPath(ffmpegPath);
@@ -73,16 +74,16 @@ app.post("/separate", async (req, res) => {
 app.get('/play', (req, res) => {
     try{
         var file = fileNameAndExt(req.query.file);
-        var route = "/home/marc_ortiz_7e3/Guetta-master/api/separated/demucs_quantized/"+file;
+        var route = "/home/marc_ortiz_7e3/Guetta/api/separated/demucs_quantized/"+file;
         var array = fs.readdirSync(route);
         console.log(array);
         res.writeHead(200, {'Content-Type': 'text/html'});
         for (var src  of array) {
             console.log(file+'/'+src)
             res.write('<audio controls>');
-            res.write('<source src=\"http://35.205.50.110:3002/' +file+'/'+src +'\" type="audio/ogg">');
+            res.write('<source src=\"http://35.195.233.122:3002/' +file+'/'+src +'\" type="audio/ogg">');
             res.write('</audio>');
-            res.write('<p><a href=\"http://35.205.50.110:3002/' +file+'/'+src+'\" download>'+src+'</p>');
+            res.write('<p><a href=\"http://35.195.233.122:3002/' +file+'/'+src+'\" download>'+src+'</p>');
         }
         res.end();
     }catch(e){
@@ -93,8 +94,10 @@ app.get('/play', (req, res) => {
 app.post("/sendmail", (req, res) => {
         var filename = fileNameAndExt(req.body.filename);
         var email = req.body.email;
-        console.log(email)
+        console.log('lets insert '+email);
         db.run(insert, [filename, email]);
+	console.log('insert done');
+	res.send(email+' received');
 });
 
 app.listen(3002, () => {
@@ -138,23 +141,47 @@ function separate(filepath, filename, res) {
     });
     spawn_.on('exit', function (code) {
         console.log(code);
-        console.log('exit');
         console.log(filename+' separated');
-        getmail(filename);
-        res.redirect('/play?file=' + filename);
+        getmail(filename,res);
+        //res.redirect('/play?file=' + filename);
     });
 }
 
-function getmail(filename){
-    var sql = 'select email from emails where filename = "'+fileNameAndExt(filename)+'"';
+function getmail(filen, res){
+    var file = fileNameAndExt(filen);
+    console.log("nombre separado "+file);
+    var sql = 'select * from emails where filename= "'+ file + '\"';
     var params = [];
-
-
-    db.all(sql, params, (err, rows) => {
+	console.log(sql);
+	db.all(sql, params, (err, rows) => {
         if (err) {
           console.log(err);
         }
-        //enviar mail
-        console.log("[getmail] :"+rows);
+	enviarmail(rows[0].email, file,res);
       });
     };
+
+function enviarmail(email,filen,res){
+	const transporter = nodemailer.createTransport({
+	  service: 'gmail',
+	  auth: {
+	    user: 'guetta.app@gmail.com',
+	    pass: 'GuettaApp2005'
+	  }
+	});
+	const mailOptions = {
+  	  from: 'guetta-app.com',
+	  to: email,
+	  subject: 'Your song is ready!',
+	  text: "There's the link to your splitted song:"+"http://35.195.233.122:3002/play?file="+filen+"/      Remember that you only have 24h to access, play and download it!"
+	};
+
+	transporter.sendMail(mailOptions, function(error, info){
+	  if (error) {
+		console.log(error);
+	  } else {
+	    console.log('Email sent: ' + info.response);
+	    res.end('mail received');
+	  }
+	});
+}

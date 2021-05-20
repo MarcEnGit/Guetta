@@ -2,7 +2,7 @@ import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "../img/logo_vertical.png";
 import { Link } from 'react-router-dom';
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { motion} from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
@@ -13,17 +13,18 @@ function Loading() {
   const [email, setEmail] = useState('');
 
     const history = useHistory();
+
     const formData = new FormData();
     formData.append("filename", history.location.state.url);
-    const separate = async (e) => {
+
+    useEffect(async () => {
     try {
             const res = await axios.post(
-                "http://localhost:3002/separate",
+                "http://35.195.233.122:3002/separate",
                 formData
             );
             console.log(res.data);
             if(res){
-                console.log('push de final');
                 history.push({
                     pathname: '/',
                     state: { url:res.data }
@@ -32,7 +33,7 @@ function Loading() {
         } catch (ex) {
             console.log(ex);
         }
-    }
+    });
 
     const changeLanguage = () => {
       var selectBox = document.getElementById("selectBox");
@@ -48,20 +49,20 @@ function Loading() {
         i18n.changeLanguage("en")
       }
     }
-    
-    separate();
+
+    //separate();
 
     const [disable, setDisable] = useState(false);
 
     const uploadEmail = async (e) => {
       setDisable(true)
-      console.log('press')
+      console.log('press uplad email')
       var emailText = document.getElementById('emailText').value;
       setEmail(emailText);
-      formData.append("email", email);
+      formData.append("email", emailText);
       try {
           const res = await axios.post(
-              "http://localhost:3002/sendmail",
+              "http://35.195.233.122:3002/sendmail",
               formData
           );
       } catch (ex) {
@@ -78,7 +79,7 @@ function Loading() {
     >
       <div className="App">
         <div className="dropdowns">
-          <div className="divLeft" >
+          <div className="divLeft">
             <select className="dropdown" onChange={changeLanguage} id="selectBox">
               <option value="1">Castellano</option>
               <option value="2">Català</option>
@@ -96,8 +97,8 @@ function Loading() {
                 </li>
               </div>
             </ul>
-          </div> 
-        </div>     
+          </div>
+        </div>
         <img src={logo} className="logo" alt="logo" />
         <div className="loadingSvg">
           <svg viewBox="0 0 135 140" fill="currentColor" width="40" role="progressbar">
@@ -144,7 +145,7 @@ function Loading() {
         <br/>
         <br/>
       </div>
-    </motion.div>
+	</motion.div>
     );
 }
 
