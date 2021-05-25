@@ -1,7 +1,7 @@
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "../img/logo_vertical.png";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import React, {useState,useEffect} from 'react';
 import { motion} from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -11,23 +11,22 @@ import axios from 'axios';
 function Loading() {
   const [t, i18n] = useTranslation("global");
   const [email, setEmail] = useState('');
-
-    const history = useHistory();
-
-    const formData = new FormData();
+  
+  const history = useHistory();
+  
+  const formData = new FormData();
 
 	function fileNameAndExt(str){
 		var file = str.split('.');
 		console.log(file);
 		return file[0];
-	}
+  }
 
 	var filenameWithoutExt = fileNameAndExt(history.location.state.url);
 
     formData.append("filename", history.location.state.url);
-
+    
     useEffect(() => {
-
       async function split() {
         try {
           const res = await axios.post(
@@ -82,6 +81,8 @@ function Loading() {
       }
       setDisable(false);
   }
+
+
 
   return (
     <motion.div

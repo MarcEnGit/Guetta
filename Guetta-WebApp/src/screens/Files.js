@@ -1,13 +1,20 @@
 import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion} from 'framer-motion';
+import axios from 'axios';
+
 
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 function Files() {
   const [t, i18n] = useTranslation("global");
+  
+  let query = useQuery();
+
+  const formData = new FormData();
 
   const changeLanguage = () => {
     var selectBox = document.getElementById("selectBox");
@@ -23,6 +30,44 @@ function Files() {
       i18n.changeLanguage("en")
     }
   }
+
+  function useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
+
+  function setAudio(id) {
+
+    for (let m of id){
+      var downloads = document.createElement("a");
+      downloads.href = m;
+      downloads.download = 'http://35.195.233.122:3002/'+file+"/"+m;
+      downloads.innerHTML = m;
+      document.getElementById("container_audio").appendChild(downloads);
+
+      var sound = document.createElement('audio');
+      sound.controls = 'controls';
+      sound.src = 'http://guetta-app.com:3002/'+file+"/"+m;
+      document.getElementById("container_audio").appendChild(sound);
+    }
+  }
+
+  var file = query.get('file')
+
+  useEffect(() => {
+    async function split() {
+      try {
+        console.log("heyyyy")
+        const res = await axios.get("http://guetta-app.com:3002/play?file="+file);
+        console.log(res.data);
+        if(res){
+          setAudio(res.data)
+        }
+    } catch (ex) {
+        console.log(ex);
+    }
+    }
+    split();
+  }, []);
 
   return (
     <motion.div
@@ -53,8 +98,9 @@ function Files() {
         </div> 
       </div>
       <img src={logo} className="logoHorizontal" alt="logo" />
-      
+      <div id="container_audio">
 
+      </div>
 
       <div className="parent2">
         <Link className="terms" to="./terms">{t("words.terms")}</Link>
