@@ -15,6 +15,15 @@ function Loading() {
     const history = useHistory();
 
     const formData = new FormData();
+
+	function fileNameAndExt(str){
+		var file = str.split('.');
+		console.log(file);
+		return file[0];
+	}
+
+	var filenameWithoutExt = fileNameAndExt(history.location.state.url);
+
     formData.append("filename", history.location.state.url);
 
     useEffect(() => {
