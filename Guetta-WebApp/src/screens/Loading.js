@@ -46,7 +46,6 @@ function Loading() {
       }
       }
       split();
-    
     }, []);
 
     const changeLanguage = () => {
@@ -64,7 +63,6 @@ function Loading() {
       }
     }
 
-    //separate();
 
     const [disable, setDisable] = useState(false);
 
