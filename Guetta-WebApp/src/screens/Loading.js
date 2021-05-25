@@ -17,23 +17,28 @@ function Loading() {
     const formData = new FormData();
     formData.append("filename", history.location.state.url);
 
-    useEffect(async () => {
-    try {
-            const res = await axios.post(
-                "http://35.195.233.122:3002/separate",
-                formData
-            );
-            console.log(res.data);
-            if(res){
-                history.push({
-                    pathname: '/',
-                    state: { url:res.data }
-                });
-            }
-        } catch (ex) {
-            console.log(ex);
-        }
-    });
+    useEffect(() => {
+
+      async function split() {
+        try {
+          const res = await axios.post(
+              "http://35.195.233.122:3002/separate",
+              formData
+          );
+          console.log(res.data);
+          if(res){
+              history.push({
+                  pathname: '/',
+                  state: { url:res.data }
+              });
+          }
+      } catch (ex) {
+          console.log(ex);
+      }
+      }
+      split();
+    
+    }, []);
 
     const changeLanguage = () => {
       var selectBox = document.getElementById("selectBox");

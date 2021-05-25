@@ -11,7 +11,6 @@ const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path;
 const ffmpeg = require('fluent-ffmpeg')
 const getVideoId = require('get-video-id');
 const sqlite3 = require('sqlite3').verbose();
-const nodemailer = require('nodemailer');
 const app = express();
 
 ffmpeg.setFfmpegPath(ffmpegPath);
@@ -81,9 +80,9 @@ app.get('/play', (req, res) => {
         for (var src  of array) {
             console.log(file+'/'+src)
             res.write('<audio controls>');
-            res.write('<source src=\"http://35.195.233.122:3002/' +file+'/'+src +'\" type="audio/ogg">');
+            res.write('<source src=\"http://35.205.50.110:3002/' +file+'/'+src +'\" type="audio/ogg">');
             res.write('</audio>');
-            res.write('<p><a href=\"http://35.195.233.122:3002/' +file+'/'+src+'\" download>'+src+'</p>');
+            res.write('<p><a href=\"http://35.205.50.110:3002/' +file+'/'+src+'\" download>'+src+'</p>');
         }
         res.end();
     }catch(e){
@@ -152,36 +151,31 @@ function getmail(filen, res){
     console.log("nombre separado "+file);
     var sql = 'select * from emails where filename= "'+ file + '\"';
     var params = [];
+    /*var select = 'select * from emails where ',
+        query,
+        params = [];
+	query = select + "filename=?"
+        params.push(filen);
+    console.log(query);
+    db.get(query, params, function(err, row) {
+        console.log( 'email:', row.email, row.filename);
+    });*/
+    /*db.get(sql, function(err, row) {
+    console.log(row.filename);
+    console.log(row.email);
+    row = row.email;
+    callback(row.email);
+	});
+
+	function callback(row) {
+    	console.log("R:" + row);
+	}*/
 	console.log(sql);
 	db.all(sql, params, (err, rows) => {
         if (err) {
           console.log(err);
         }
-	enviarmail(rows[0].email, file,res);
+        //enviar mail
+        console.log("[getmail] :"+rows.email);	res.send('email '+rows.email+' received');
       });
     };
-
-function enviarmail(email,filen,res){
-	const transporter = nodemailer.createTransport({
-	  service: 'gmail',
-	  auth: {
-	    user: 'guetta.app@gmail.com',
-	    pass: 'GuettaApp2005'
-	  }
-	});
-	const mailOptions = {
-  	  from: 'guetta-app.com',
-	  to: email,
-	  subject: 'Your song is ready!',
-	  text: "There's the link to your splitted song:"+"http://guetta-app.com:3002/play?file="+filen+"/      Remember that you only have 24h to access, play and download it!"
-	};
-
-	transporter.sendMail(mailOptions, function(error, info){
-	  if (error) {
-		console.log(error);
-	  } else {
-	    console.log('Email sent: ' + info.response);
-	    res.end('mail received');
-	  }
-	});
-}
