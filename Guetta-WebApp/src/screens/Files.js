@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link, useLocation } from 'react-router-dom';
 import { motion} from 'framer-motion';
 import axios from 'axios';
+import downloadjs from 'downloadjs';
+import AudioPlayer from 'react-h5-audio-player';
 
 
 import { useTranslation } from 'react-i18next';
@@ -35,19 +37,39 @@ function Files() {
     return new URLSearchParams(useLocation().search);
   }
 
+  async function download(directory, filename){
+  	try {
+        console.log("heyyyy")
+        const res = await fetch('http://guetta-app.com:3002/download?filename='+directory+'/'+filename);
+	const blob = await res.blob();
+	downloadjs(blob, filename);
+    } catch (ex) {
+        console.log(ex);
+    }
+  }
+
   function setAudio(id) {
 
     for (let m of id){
-      var downloads = document.createElement("a");
-      downloads.href = m;
-      downloads.download = 'http://35.195.233.122:3002/'+file+"/"+m;
-      downloads.innerHTML = m;
-      document.getElementById("container_audio").appendChild(downloads);
+      var sourceAudio ='http://guetta-app.com:3002/'+file+"/"+m; 
+      var button = document.createElement('input');
+      button.type = 'button';
+      button.value = m;
+      button.className = 'sendButton';
+      button.onclick = function() {
+	download(file, m);
+      };
+
+      document.getElementById("container_audio").appendChild(button);
 
       var sound = document.createElement('audio');
       sound.controls = 'controls';
       sound.src = 'http://guetta-app.com:3002/'+file+"/"+m;
       document.getElementById("container_audio").appendChild(sound);
+
+      var br = document.createElement('br');
+      document.getElementById("container_audio").appendChild(br);
+
     }
   }
 

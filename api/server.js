@@ -55,6 +55,12 @@ app.post("/upload", (req, res) => {
     });
 });
 
+app.get('/download', function(req, res){
+  var filename = req.query.filename;
+  const file = `${__dirname}/separated/demucs_quantized/`+filename;
+  res.download(file); // Set disposition and send it.
+});
+
 app.post("/ytconvert", (req, res) => {
     const url = req.body.urlText;
     ytToMp3(url,res);
@@ -76,16 +82,7 @@ app.get('/play', (req, res) => {
         var file = fileNameAndExt(req.query.file);
         var route = "/home/marc_ortiz_7e3/Guetta/api/separated/demucs_quantized/"+file;
         var array = fs.readdirSync(route);
-        console.log(array);
-        res.writeHead(200, {'Content-Type': 'text/html'});
-        for (var src  of array) {
-            console.log(file+'/'+src)
-            res.write('<audio controls>');
-            res.write('<source src=\"http://35.195.233.122:3002/' +file+'/'+src +'\" type="audio/ogg">');
-            res.write('</audio>');
-            res.write('<p><a href=\"http://35.195.233.122:3002/' +file+'/'+src+'\" download>'+src+'</p>');
-        }
-        res.end();
+        res.send(array);
     }catch(e){
         console.log(e);
     }
@@ -157,7 +154,9 @@ function getmail(filen, res){
         if (err) {
           console.log(err);
         }
-	enviarmail(rows[0].email, file,res);
+	if(rows){
+		enviarmail(rows[0].email, file,res);
+	}
       });
     };
 
