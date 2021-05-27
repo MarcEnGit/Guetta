@@ -5,8 +5,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion} from 'framer-motion';
 import axios from 'axios';
 import downloadjs from 'downloadjs';
-import AudioPlayer from 'react-h5-audio-player';
-
 
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
