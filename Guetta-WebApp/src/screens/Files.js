@@ -192,8 +192,8 @@ function Files() {
       <div id="container_audio">
 
       </div>
-      <button onClick={playAudio}>Play selected</button>
-      <button onClick={pauseAudio}>Pause All</button>
+      <button onClick={playAudio} className="sendButton">Play selected</button>
+      <button onClick={pauseAudio} className="sendButton">Pause All</button>
       <div className="parent2">
         <Link className="terms" to="./terms">{t("words.terms")}</Link>
         <Link className="privacy" to="./privacy">{t("words.privacy")}</Link>
