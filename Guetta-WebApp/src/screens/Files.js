@@ -13,10 +13,8 @@ import { useEffect } from 'react';
 
 function Files() {
   const [t, i18n] = useTranslation("global");
-  
-  let query = useQuery();
 
-  const formData = new FormData();
+  let query = useQuery();
 
   const changeLanguage = () => {
     var selectBox = document.getElementById("selectBox");
@@ -35,6 +33,71 @@ function Files() {
 
   function useQuery() {
     return new URLSearchParams(useLocation().search);
+
+  }
+
+  function playAudio() {
+    var selected = [];
+
+    var drums_check = document.getElementById("drums_check");
+    var bass_check = document.getElementById("bass_check");
+    var other_check = document.getElementById("other_check");
+    var vocals_check = document.getElementById("vocals_check");
+
+    var drums = document.getElementById("drums");
+    var bass = document.getElementById("bass");
+    var other = document.getElementById("other");
+    var vocals = document.getElementById("vocals");
+
+    drums.pause();
+    bass.pause();
+    other.pause();
+    vocals.pause();
+
+    drums.currentTime=0;
+    bass.currentTime=0;
+    other.currentTime=0;
+    vocals.currentTime=0;
+
+    if(drums_check.checked){
+	drums.play();
+    }
+
+    if(bass_check.checked){ 
+	bass.play();
+    }
+
+    if(other_check.checked){ 
+	other.play();
+    }
+   
+    if(vocals_check.checked){ 
+	vocals.play();
+    }
+  }
+
+  function pauseAudio(){
+
+    document.getElementById("drums_check").checked = false;
+    document.getElementById("bass_check").checked = false;
+    document.getElementById("other_check").checked = false;
+    document.getElementById("vocals_check").checked = false;
+
+    var drums = document.getElementById("drums");
+    var bass = document.getElementById("bass");
+    var other = document.getElementById("other");
+    var vocals = document.getElementById("vocals");
+
+    drums.pause();
+    bass.pause();
+    other.pause();
+    vocals.pause();
+
+    drums.currentTime=0;
+    bass.currentTime=0;
+    other.currentTime=0;
+    vocals.currentTime=0;
+
   }
 
   async function download(directory, filename){
@@ -60,12 +123,18 @@ function Files() {
 	download(file, m);
       };
 
-      document.getElementById("container_audio").appendChild(button);
+      var checkbox = document.createElement('input');
+      checkbox.type = "checkbox";
+      checkbox.id = m.split('.')[0]+"_check";
 
       var sound = document.createElement('audio');
       sound.controls = 'controls';
+      sound.id = m.split('.')[0];
       sound.src = 'http://guetta-app.com:3002/'+file+"/"+m;
+     
+      document.getElementById("container_audio").appendChild(checkbox);
       document.getElementById("container_audio").appendChild(sound);
+      document.getElementById("container_audio").appendChild(button);
 
       var br = document.createElement('br');
       document.getElementById("container_audio").appendChild(br);
@@ -123,7 +192,8 @@ function Files() {
       <div id="container_audio">
 
       </div>
-
+      <button onClick={playAudio}>Play selected</button>
+      <button onClick={pauseAudio}>Pause All</button>
       <div className="parent2">
         <Link className="terms" to="./terms">{t("words.terms")}</Link>
         <Link className="privacy" to="./privacy">{t("words.privacy")}</Link>

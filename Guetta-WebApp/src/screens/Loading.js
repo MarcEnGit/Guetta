@@ -32,11 +32,15 @@ function Loading() {
           const res = await axios.post(
               "http://35.195.233.122:3002/separate",
               formData
-          ).then( history.push({
-                  pathname: '/files?file='+filenameWithoutExt,
-                  state: { url:res.data }
-              })
           );
+ 
+	  if(res){
+		console.log("dentro del then");
+                history.push({
+                pathname: '/files',
+                search: '?file='+filenameWithoutExt});
+	  }
+
       } catch (ex) {
           console.log(ex);
       }

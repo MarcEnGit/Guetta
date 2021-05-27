@@ -154,9 +154,12 @@ function getmail(filen, res){
         if (err) {
           console.log(err);
         }
-	if(rows){
+	if(rows[0] !== undefined){
 		enviarmail(rows[0].email, file,res);
+	}else{
+		res.send('end');
 	}
+ 	
       });
     };
 
@@ -172,7 +175,13 @@ function enviarmail(email,filen,res){
   	  from: 'guetta-app.com',
 	  to: email,
 	  subject: 'Your song is ready!',
-	  text: "There's the link to your splitted song:"+"http://guetta-app.com:3002/play?file="+filen+"/      Remember that you only have 24h to access, play and download it!"
+	  html: "<p><img style='display: block; margin-left: auto; margin-right: auto;' src='https://i.ibb.co/zRTF5dT/logo-img.png' alt='logo-img' width='128' height='128' border='0' /></p>"+
+	"<h1 style='text-align: center;'>Your link&nbsp;is ready!</h1>"+
+	"<p>You can access the link in the next 24 hours, so be fast and download your splitted song! You can download and play the different splitted parts of the song you uploaded comfortably!</p>"+
+	"<p>&nbsp;</p>"+
+	"<p>Your link : <span>http://guetta-app.com/files?file="+filen+"</span></p>"+
+	"<p>&nbsp;</p>"+
+	"<p>Wish you liked our web app and give us a 10/10!</p>"
 	};
 
 	transporter.sendMail(mailOptions, function(error, info){
