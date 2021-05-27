@@ -53,8 +53,8 @@ function Terms() {
         </div> 
       </div>        
         <img src={logo} className="logoHorizontal" alt="logo" />
-        <h2>TERMS OF USE</h2><br/>
-        <br/>
+        <h2 className="h2-title">TERMS OF USE</h2><br/>
+      
         <h5 className="text">Please review these terms and conditions of use carefully 
         before using our websites, including, without limitation, the following websites: <br/><br/></h5>
         <h5>GUETTA</h5>

@@ -53,7 +53,7 @@ function AboutUs() {
         </div> 
       </div>
       <img src={logo} className="logoHorizontal" alt="logo" />
-      <h2>{t("words.aboutus")}</h2><br/>
+      <h2 className="h2-title">{t("words.aboutus")}</h2><br/>
       <h5 className="text">
       {t("words.text-about-us1")}<br/><br/>
 

@@ -22,7 +22,7 @@ function Loading() {
 		return file[0];
   }
 
-	var filenameWithoutExt = fileNameAndExt(history.location.state.url);
+	/*var filenameWithoutExt = fileNameAndExt(history.location.state.url);
 
     formData.append("filename", history.location.state.url);
     
@@ -46,7 +46,7 @@ function Loading() {
       }
       }
       split();
-    }, []);
+    }, []);*/
 
     const changeLanguage = () => {
       var selectBox = document.getElementById("selectBox");

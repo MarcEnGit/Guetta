@@ -53,7 +53,7 @@ function Privacy() {
         </div> 
       </div>
       <img src={logo} className="logoHorizontal" alt="logo" />
-      <h2>PRIVACY POLICY</h2><br/>
+      <h2 className="h2-title">PRIVACY POLICY</h2><br/>
       <h5 className="text">
 Pursuant to our Terms of Use, this document describes how we treat personal information related to your use of this website and the services offered on and through it (the „Service”), including information you provide when using it.<br/><br/>
 
