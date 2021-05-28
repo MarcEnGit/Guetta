@@ -9,10 +9,10 @@ import axios from 'axios';
 function FunctionClickFile() {
     
     // Variable per guardar l'arxiu.
-    const [file] = useState();
+    const [file, setFile] = useState();
     
     // Variable per guardar el nom de l'arxiu.
-    const [fileName] = useState("");
+    const [fileName, setFileName] = useState("");
     
     // Variable per canviar l'idioma del text per cada idioma que té la web.
     const [t] = useTranslation("global");
@@ -23,9 +23,15 @@ function FunctionClickFile() {
     // Variables per habilitar i deshabilitar el botó d'enviar l'arxiu mentre les funcions s'estàn processant.
     const [disable, setDisable] = useState(false);
     
+    const saveFile = (e) => {
+        setFile(e.target.files[0]);
+        setFileName(e.target.files[0].name);
+    };
+    
     // Funció per pujar l'arxiu mp3 a l'API.
     const uploadFile = async (e) => {
         setDisable(true)
+        
         const formData = new FormData();
         formData.append("file", file);
         formData.append("fileName", fileName);
@@ -68,8 +74,8 @@ function FunctionClickFile() {
     return (
         <div className="divFunction">
             <div className="divBackground">
-                <input type="file" accept=".mp3" hidden id="real-file"></input>
-Comment App.css Commit - Sergi                <button type="button" className="buttonLight" onClick={changeButton} id="custom-button">{t("words.chose-file")}</button>
+                <input type="file" onChange={saveFile} accept=".mp3" hidden id="real-file" required></input>
+                <button type="button" className="buttonLight" onClick={changeButton} id="custom-button">{t("words.chose-file")}</button>
                 <span id="custom-text" className="customText" >{t("words.no-file")}</span>
             </div>
             <div className="divButton">
