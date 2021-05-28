@@ -13,16 +13,14 @@ function Loading() {
   const [email, setEmail] = useState('');
   
   const history = useHistory();
-  
   const formData = new FormData();
 
 	function fileNameAndExt(str){
 		var file = str.split('.');
-		console.log(file);
 		return file[0];
   }
 
-	/*var filenameWithoutExt = fileNameAndExt(history.location.state.url);
+  var filenameWithoutExt = fileNameAndExt(history.location.state.url);
 
     formData.append("filename", history.location.state.url);
     
@@ -35,7 +33,6 @@ function Loading() {
           );
  
 	  if(res){
-		console.log("dentro del then");
                 history.push({
                 pathname: '/files',
                 search: '?file='+filenameWithoutExt});
@@ -46,7 +43,7 @@ function Loading() {
       }
       }
       split();
-    }, []);*/
+    }, []);
 
     const changeLanguage = () => {
       var selectBox = document.getElementById("selectBox");
@@ -68,7 +65,6 @@ function Loading() {
 
     const uploadEmail = async (e) => {
       setDisable(true)
-      console.log('press uplad email')
       var emailText = document.getElementById('emailText').value;
       setEmail(emailText);
       formData.append("email", emailText);
