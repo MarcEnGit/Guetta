@@ -1,3 +1,4 @@
+//Dependencies
 const express = require("express");
 const spawn = require("child_process").spawn;
 const fileupload = require("express-fileupload");
@@ -16,10 +17,11 @@ const app = express();
 
 ffmpeg.setFfmpegPath(ffmpegPath);
 
+//Inizialitzar base de dades i sentencia de insert
 const DBSOURCE = "db.sqlite"
 var insert = 'INSERT INTO emails(filename, email) VALUES (?,?)'
 
-
+//Iniciar i crear BBDD si no existeix
 let db = new sqlite3.Database(DBSOURCE, (err) => {
     if (err) {
       console.error(err.message)
@@ -39,10 +41,12 @@ let db = new sqlite3.Database(DBSOURCE, (err) => {
     }
 });
 
+//Fem que l'express agafi les llibreries cors i fileupload, també que es situi a separated/demucs_quantized/ per treballar.
 app.use(cors());
 app.use(fileupload());
 app.use(express.static("separated/demucs_quantized/"));
 
+//Procesar peticions al /upload, desa arxiu mp3 que puja l'usuari al directori files
 app.post("/upload", (req, res) => {
     const file = req.files.file;
     var filename = new Date().valueOf() + crypto.randomBytes(5).toString('hex')+".mp3";
@@ -55,28 +59,32 @@ app.post("/upload", (req, res) => {
     });
 });
 
+//Petició /download, mana al navegador l'arxiu dessitjat per descarregar-lo
 app.get('/download', function(req, res){
   var filename = req.query.filename;
   const file = `${__dirname}/separated/demucs_quantized/`+filename;
-  res.download(file); // Set disposition and send it.
+  res.download(file);
 });
 
+//Agafa la petició POST amb la URL del video de youtube, agafa la id del video i la passa per la llibreria ytdl-core per treure el mp3 del video
 app.post("/ytconvert", (req, res) => {
     const url = req.body.urlText;
     ytToMp3(url,res);
 });
 
+//Funció que separa un string amb un nom d'arxiu de la extensió
 function fileNameAndExt(str){
   var file = str.split('.');
-  console.log(file);
   return file[0];
 }
 
+//Petició al separate, li passem per post la ubicació del .mp3 i la processa per el demucs, executant aquest amb el conda a la màquina local
 app.post("/separate", async (req, res) => {
     const url = req.body.filename;
     await separate("files/"+url,url,res);
 });
 
+//Al fer la petició retorna la llista d'arxius de la carpeta que genera el demucs un cop acaba
 app.get('/play', (req, res) => {
     try{
         var file = fileNameAndExt(req.query.file);
@@ -88,25 +96,25 @@ app.get('/play', (req, res) => {
     }
 });
 
+//Al fer la petició, guardem el email que passem per POST a la BBDD d'emails
 app.post("/sendmail", (req, res) => {
         var filename = fileNameAndExt(req.body.filename);
         var email = req.body.email;
-        console.log('lets insert '+email);
         db.run(insert, [filename, email]);
-	console.log('insert done');
 	res.send(email+' received');
 });
 
+//Especifiquem quin port utilitza la api
 app.listen(3002, () => {
     console.log("Server running successfully on 3002");
 });
 
+//Funció que s'encarrega de rebre la URL del video i a través de ytdl-core, retornar l'arxiu mp3
 function ytToMp3(url,res){
     var filename = new Date().valueOf() + crypto.randomBytes(5).toString('hex');
     var newpath = __dirname + "/files/"+filename;
     let start = Date.now();
     const { id } = getVideoId(url);
-                console.log(id);
                 let stream = ytdl(id, {
                 quality: 'highestaudio',
                 });
@@ -123,13 +131,13 @@ function ytToMp3(url,res){
         });
 }
 
+//Funció que s'encarrega de passar-li al demucs l'arxiu mp3 a processar
 function separate(filepath, filename, res) {
     var conda_exec = "~/anaconda3/bin/conda";
     var env_name = "demucs";
     var sub_cmd = "~/anaconda3/envs/demucs/bin/python3.7 -m demucs.separate -d cpu " + filepath;
     var command = [conda_exec, 'run', '-n', env_name, sub_cmd];
     var spawn_ = spawn(command.join(" "), { shell: true });
-    console.log('Converting ' + filename);
     spawn_.stdout.on('data', function (data) {
         console.log(data.toString());
     });
@@ -138,18 +146,16 @@ function separate(filepath, filename, res) {
     });
     spawn_.on('exit', function (code) {
         console.log(code);
-        console.log(filename+' separated');
         getmail(filename,res);
         //res.redirect('/play?file=' + filename);
     });
 }
 
+//Funció que, quan acaba el demucs, comprova si l'usuari ha ficat un email i, si es el cas, crida la funció enviarmail()
 function getmail(filen, res){
     var file = fileNameAndExt(filen);
-    console.log("nombre separado "+file);
     var sql = 'select * from emails where filename= "'+ file + '\"';
     var params = [];
-	console.log(sql);
 	db.all(sql, params, (err, rows) => {
         if (err) {
           console.log(err);
@@ -163,6 +169,7 @@ function getmail(filen, res){
       });
     };
 
+//Funció que, passat un email, envia el mail amb el link per accedir als arxius
 function enviarmail(email,filen,res){
 	const transporter = nodemailer.createTransport({
 	  service: 'gmail',
