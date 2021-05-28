@@ -2,16 +2,16 @@
 import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import iconbass from '../img/bass.png';
+import iconbass from '../img/bass_icon.png';
 import iconbass_check from '../img/bass_checked.png';
 
-import icondrums from '../img/drums.png'
+import icondrums from '../img/drums_icon.png'
 import icondrums_check from '../img/drums_checked.png'
 
-import iconother from '../img/other.png'
+import iconother from '../img/others_icon.png'
 import iconother_check from '../img/other_checked.png'
 
-import iconvocals from '../img/vocals.png'
+import iconvocals from '../img/vocals_icon3.png'
 import iconvocals_check from '../img/vocals_checked.png'
 
 import icondownload from '../img/download_icon.png'
