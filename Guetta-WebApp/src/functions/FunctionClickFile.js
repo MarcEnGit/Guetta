@@ -1,3 +1,4 @@
+//Dependencies
 import React, { useState } from 'react';
 import '../css/App.css';
 import { useTranslation } from 'react-i18next';
