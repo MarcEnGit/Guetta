@@ -1,3 +1,4 @@
+// CSS per a dispositius amb amplada inferior a 800px (Dispositius móbils).
 @media screen and (max-width: 800px) {
   .App {
     text-align: center;
@@ -240,6 +241,8 @@
     color: #ffffff;
   }
 }
+
+// CSS per a dispositius amb amplada superior a 801px (Tàblets, ordinadors, etc.).
 
 @media screen and (min-width: 801px) {
   .App {
