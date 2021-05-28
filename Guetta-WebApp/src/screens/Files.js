@@ -117,7 +117,7 @@ function Files() {
       var button = document.createElement('input');
       button.type = 'button';
       button.value = m;
-      button.className = 'sendButton';
+      button.className = 'sendButton2';
       button.onclick = function() {
 	download(file, m);
       };

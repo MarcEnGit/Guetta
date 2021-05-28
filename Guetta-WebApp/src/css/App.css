@@ -1,4 +1,4 @@
-// CSS per a dispositius amb amplada inferior a 800px (Dispositius móbils).
+/* CSS per a dispositius amb amplada inferior a 800px (Dispositius móbils).*/
 @media screen and (max-width: 800px) {
   .App {
     text-align: center;
@@ -242,7 +242,7 @@
   }
 }
 
-// CSS per a dispositius amb amplada superior a 801px (Tàblets, ordinadors, etc.).
+/* CSS per a dispositius amb amplada superior a 801px (Tàblets, ordinadors, etc.).*/
 
 @media screen and (min-width: 801px) {
   .App {
@@ -413,8 +413,35 @@
     align-items: center;
     justify-content: center;
     color: #ffffff;
+    padding: 0.5%;
+    margin-left: 1%;
+    margin-top: 1%;
+    width: 10%;
+    background-color: #343a40;
+    border-color: #343a40;
+    border-radius: 0.25rem;
+  }
+
+  .sendButton2 {
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
     padding: 0.4%;
     width: 10%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    background-color: #343a40;
+    border-color: #343a40;
+    border-radius: 0.25rem;
+  }
+
+  .sendButton3 {
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    padding: 0.5%;
+    width: 10%;
+    margin-bottom: 5%;
     background-color: #343a40;
     border-color: #343a40;
     border-radius: 0.25rem;
