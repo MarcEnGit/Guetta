@@ -2,6 +2,11 @@
 import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import iconbass from '../img/bass.png';
+import icondrums from '../img/drumps.png'
+import iconother from '../img/other.png'
+import iconvocals from '../img/vocals.png'
+import icondownload from '../img/download.png'
 import { Link, useLocation } from 'react-router-dom';
 import { motion} from 'framer-motion';
 import axios from 'axios';
@@ -115,9 +120,12 @@ function Files() {
     for (let m of id){
       var sourceAudio ='http://guetta-app.com:3002/'+file+"/"+m; 
       var button = document.createElement('input');
-      button.type = 'button';
+      button.type = 'image';
       button.value = m;
-      button.className = 'sendButton2';
+      button.className = 'dwButton';
+      button.src = icondownload;
+      button.onmouseover = 'this.src = '+icondrums;
+      button.onmouseout = 'this.src = '+icondownload; 	      
       button.onclick = function() {
 	download(file, m);
       };
