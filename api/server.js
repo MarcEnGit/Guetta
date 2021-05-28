@@ -48,9 +48,7 @@ app.use(express.static("separated/demucs_quantized/"));
 
 //Procesar peticions al /upload, desa arxiu mp3 que puja l'usuari al directori files
 app.post("/upload", (req, res) => {
-    const file = req.files;
-	console.log(file);
-	/*
+    const file = req.files.file;
     var filename = new Date().valueOf() + crypto.randomBytes(5).toString('hex')+".mp3";
     var newpath = __dirname + "/files/";
     file.mv(`${newpath}${filename}`, (err) => {
@@ -59,7 +57,6 @@ app.post("/upload", (req, res) => {
         }
         res.send(filename);
     });
-    */
 });
 
 //Petició /download, mana al navegador l'arxiu dessitjat per descarregar-lo
