@@ -1,14 +1,18 @@
+// Dependencies
 import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { motion} from 'framer-motion';
-
 import { useTranslation } from 'react-i18next';
 
+// Arxiu JS de la pàgina Terms.
 function Terms() {
+  
+  // Variable per canviar l'idioma de la pàgina. 
   const [t, i18n] = useTranslation("global");
 
+  // Variable per canviar l'idioma de la pàgina al canviar l'opció del desplegable.
   const changeLanguage = () => {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
@@ -23,7 +27,8 @@ function Terms() {
       i18n.changeLanguage("en")
     }
   }
-
+  
+  // HTML que es visualitza quan s'executa aquesta pestanya.
   return (
     <motion.div
     initial={{opacity: 0}}
