@@ -1,16 +1,21 @@
+//Dependencies
 import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { motion} from 'framer-motion';
-
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 
+// Arxiu JS de la pàgina Error.
 function Error() {
+  
+  // Variable per canviar l'idioma de la pàgina.  
   const [t, i18n] = useTranslation("global");
 
+  // Variable per redirigir a una pàgina.  
   const history = useHistory();
 
+  // HTML que es mostra quan s'executa aquesta pestanya.
   return (
     <motion.div
     initial={{opacity: 0}}
