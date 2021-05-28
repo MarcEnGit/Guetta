@@ -3,9 +3,17 @@ import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import iconbass from '../img/bass.png';
-import icondrums from '../img/drumps.png'
+import iconbass_check from '../img/bass_checked.png';
+
+import icondrums from '../img/drums.png'
+import icondrums_check from '../img/drums_checked.png'
+
 import iconother from '../img/other.png'
+import iconother_check from '../img/other_checked.png'
+
 import iconvocals from '../img/vocals.png'
+import iconvocals_check from '../img/vocals_checked.png'
+
 import icondownload from '../img/download.png'
 import { Link, useLocation } from 'react-router-dom';
 import { motion} from 'framer-motion';
@@ -14,6 +22,7 @@ import downloadjs from 'downloadjs';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 
+// Arxiu JS de la pàgina Files
 function Files() {
   const [t, i18n] = useTranslation("global");
   
@@ -114,6 +123,24 @@ function Files() {
     }
   }
 
+  /*function changeImg(id){
+    if(m.split('.')[0] === 'bass'){
+      img1.src = iconbass;
+    }
+
+    if(m.split('.')[0] === 'drums'){
+      img1.src = icondrums;
+    }
+
+    if(m.split('.')[0] === 'other'){
+      img1.src = iconother;
+    }
+
+    if(m.split('.')[0] === 'vocals'){
+      img1.src = iconvocals;
+    }
+  }*/
+
   //Funció que, un cop carregada la pàgina, crea tots els elements, els checkboxes, els audios i els botons per descarregar
   function setAudio(id) {
 
@@ -124,24 +151,52 @@ function Files() {
       button.value = m;
       button.className = 'dwButton';
       button.src = icondownload;
-      button.onmouseover = 'this.src = '+icondrums;
-      button.onmouseout = 'this.src = '+icondownload; 	      
+      button.onmouseover = 'this.style.bacgroundColor = black';
+      button.onmouseout = 'this.style.bacgroundColor = white'; 	      
       button.onclick = function() {
 	download(file, m);
       };
 
       var checkbox = document.createElement('input');
       checkbox.type = "checkbox";
+      checkbox.className = "checkboxAudio"
       checkbox.id = m.split('.')[0]+"_check";
+
+      var label = document.createElement('label');
+      label.htmlFor = m.split('.')[0]+"_check";
+      label.id = m.split('.')[0]+"_label";
+      
+
+      var img1 = document.createElement('img');
+      img1.className = "imgCheck"
+      if(m.split('.')[0] === 'bass'){
+        img1.src = iconbass;
+      }
+
+      if(m.split('.')[0] === 'drums'){
+        img1.src = icondrums;
+      }
+
+      if(m.split('.')[0] === 'other'){
+        img1.src = iconother;
+      }
+
+      if(m.split('.')[0] === 'vocals'){
+        img1.src = iconvocals;
+      }
 
       var sound = document.createElement('audio');
       sound.controls = 'controls';
       sound.id = m.split('.')[0];
+      sound.className = 'sounds';
       sound.src = 'http://guetta-app.com:3002/'+file+"/"+m;
      
       document.getElementById("container_audio").appendChild(checkbox);
+      document.getElementById("container_audio").appendChild(label);
+      document.getElementById(m.split('.')[0]+"_label").appendChild(img1);
       document.getElementById("container_audio").appendChild(sound);
       document.getElementById("container_audio").appendChild(button);
+      
 
       var br = document.createElement('br');
       document.getElementById("container_audio").appendChild(br);
@@ -196,10 +251,10 @@ function Files() {
         </div> 
       </div>
       <img src={logo} className="logoHorizontal" alt="logo" />
-      <div id="container_audio">
+      <div id="container_audio" className="containeraudio">
       </div>
-      <button onClick={playAudio} className="sendButton">Play selected</button>
-      <button onClick={pauseAudio} className="sendButton">Pause All</button>
+      <button onClick={playAudio} className="sendButton3">Play selected</button>
+      <button onClick={pauseAudio} className="sendButton3">Pause All</button>
       <div className="parent2">
         <Link className="terms" to="./terms">{t("words.terms")}</Link>
         <Link className="privacy" to="./privacy">{t("words.privacy")}</Link>

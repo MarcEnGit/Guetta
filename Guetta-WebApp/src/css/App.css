@@ -445,6 +445,9 @@
     background-color: #343a40;
     border-color: #343a40;
     border-radius: 0.25rem;
+    margin-top: 3%;
+    margin-left: 4%;
+    margin-right: -1%;
   }
 
   .text {
@@ -523,5 +526,38 @@
     background-color: #343a40;
     border-color: #343a40;
     border-radius: 0.25rem;
+  }
+
+  .dwButton {
+    margin-left: 1%;
+    width: 2%;
+    margin-top: 2%;
+  }
+
+  .checkboxAudio {
+    margin-right: 1%;
+    visibility: hidden;
+  }
+
+  .imgCheck {
+    width: 6%;
+    margin-right: -80%;
+  }
+
+  .sounds {
+    margin-top: 2%;
+    margin-bottom: -0.7%;
+  }
+
+  .containeraudio {
+    margin-left: -32%;
+  }
+
+  label::before {
+    background-image: url(../img/bass.png);
+  }
+
+  :checked + label::before {
+    background-image: url(../img/bass_checked.png);
   }
 }
