@@ -69,7 +69,7 @@ function FunctionClickFile() {
         <div className="divFunction">
             <div className="divBackground">
                 <input type="file" accept=".mp3" hidden id="real-file"></input>
-Comment App.css Commit - Sergi                <button type="button" className="buttonLight" onClick={changeButton} id="custom-button">{t("words.chose-file")}</button>
+                <button type="button" className="buttonLight" onClick={changeButton} id="custom-button">{t("words.chose-file")}</button>
                 <span id="custom-text" className="customText" >{t("words.no-file")}</span>
             </div>
             <div className="divButton">
