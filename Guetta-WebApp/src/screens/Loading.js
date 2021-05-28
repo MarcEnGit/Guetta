@@ -71,7 +71,7 @@ function Loading() {
 
     const [disable, setDisable] = useState(false);
 
-    //Quan l'usuari fica el mail i clicka el butó, s'envia a l'API el email proporcionat i el fiquem a la BBDD
+    //Quan l'usuari fica el mail i clicka el botó, s'envia a l'API el email proporcionat i el fiquem a la BBDD
     const uploadEmail = async (e) => {
       setDisable(true)
       var emailText = document.getElementById('emailText').value;
