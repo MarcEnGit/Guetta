@@ -1,3 +1,4 @@
+//Dependencies
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "../img/logo_vertical.png";
@@ -6,15 +7,19 @@ import FunctionClickFile from '../functions/FunctionClickFile';
 import FunctionClickUrl from '../functions/FunctionClickUrl';
 import React, {useState} from 'react';
 import { motion} from 'framer-motion';
-
 import { useTranslation } from 'react-i18next';
 
+// Arxiu JS de la pàgina Home.
 function Home() {
+  
+  // Variable per canviar l'idioma de la pàgina.  
   const [t, i18n] = useTranslation("global");
 
+  // Variables per mostrar o ocular l'HTML que es mostra en els arxius FunctionClickFIle i FunctionClickUrl.
   const [isShowUrl, setIsShowedUrl] = useState(false);
   const [isShowFile, setIsShowedFile] = useState(false);
 
+  // Variable per canviar l'idioma de la pàgina al canviar l'opció del desplegable.
   const changeLanguage = () => {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
@@ -30,14 +35,15 @@ function Home() {
     }
   }
   
+  // Funciò per mostrar o ocular l'HTML que es mostra en l'arxius FunctionClickUrl.
   function showURL() {
     setIsShowedUrl(isShowUrl => !isShowUrl);
     if (isShowFile === true) {
       setIsShowedFile(isShowFile => !isShowFile);
-    }
-    
+    } 
   }
 
+  // Funciò per mostrar o ocular l'HTML que es mostra en l'arxius FunctionClickFile.
   function showFile() {
     setIsShowedFile(isShowFile => !isShowFile);
     if (isShowUrl === true) {
@@ -45,7 +51,8 @@ function Home() {
     }
   }
 
-    return (
+  // HTML que es visualitza quan s'executa aquesta pestanya.
+  return (
     <motion.div
     initial={{opacity: 0}}
     animate={{opacity: 1}}
