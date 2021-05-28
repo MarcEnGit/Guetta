@@ -4,17 +4,25 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-
+// Arxiu JS per pujar un arxiu.
 function FunctionClickFile() {
+    
+    // Constants per guardar l'arxiu.
     const [file] = useState();
+    
+    // Constants per guardar el nom de l'arxiu.
     const [fileName] = useState("");
-
+    
+    // Constant per canviar l'idioma del text per cada idioma que té la web.
     const [t] = useTranslation("global");
-
+    
+    // Constant per redirigir d'una pàgina a una altre.
     const history = useHistory();
 
+    // Constant per habilitar i deshabilitar el botó d'enviar l'arxiu mentre les funcions s'estàn processant.
     const [disable, setDisable] = useState(false);
-
+    
+    // Funció per pujar l'arxiu mp3 a l'API.
     const uploadFile = async (e) => {
         setDisable(true)
         const formData = new FormData();
@@ -38,7 +46,7 @@ function FunctionClickFile() {
         setDisable(false)
     }
 
-
+    // Funció per canviar el text de predefinit per el nom de l'arxiu seleccionat.
     const changeButton = () => {
         var realFileBtn = document.getElementById("real-file");
 
@@ -55,11 +63,12 @@ function FunctionClickFile() {
         })
     }
 
+    // HTML que s'implementa a l'executar l'arxiu.     
     return (
         <div className="divFunction">
             <div className="divBackground">
                 <input type="file" accept=".mp3" hidden id="real-file"></input>
-                <button type="button" className="buttonLight" onClick={changeButton} id="custom-button">{t("words.chose-file")}</button>
+Comment App.css Commit - Sergi                <button type="button" className="buttonLight" onClick={changeButton} id="custom-button">{t("words.chose-file")}</button>
                 <span id="custom-text" className="customText" >{t("words.no-file")}</span>
             </div>
             <div className="divButton">
