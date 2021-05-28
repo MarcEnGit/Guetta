@@ -9,10 +9,12 @@ import { useTranslation } from 'react-i18next';
 // Arxiu JS de la pàgina AboutUs.
 function AboutUs() {
   
-  // Constant per canviar l'idioma del text per cada idioma que té la web.
+  // Variable per canviar l'idioma de la pàgina.
+  const changeLanguage = () => {
   const [t, i18n] = useTranslation("global");
   
-  // Constant que s'encarrega de canviar l'idioma.
+  // Variable per canviar l'idioma de la pàgina al canviar l'opció del desplegable.
+  const changeLanguage = () => {
   const changeLanguage = () => {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
