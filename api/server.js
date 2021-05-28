@@ -48,8 +48,8 @@ app.use(express.static("separated/demucs_quantized/"));
 
 //Procesar peticions al /upload, desa arxiu mp3 que puja l'usuari al directori files
 app.post("/upload", (req, res) => {
-    const file = req.files.file;
-	console.log(file.filename);
+    const file = req.files;
+	console.log(file);
 	/*
     var filename = new Date().valueOf() + crypto.randomBytes(5).toString('hex')+".mp3";
     var newpath = __dirname + "/files/";
