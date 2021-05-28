@@ -253,8 +253,10 @@ function Files() {
       <img src={logo} className="logoHorizontal" alt="logo" />
       <div id="container_audio" className="containeraudio">
       </div>
-      <button onClick={playAudio} className="sendButton3">Play selected</button>
-      <button onClick={pauseAudio} className="sendButton3">Pause All</button>
+      <div id="containcer_buttons" className="containerbuttons">
+      	<button onClick={playAudio} className="sendButton3">Play selected</button>
+      	<button onClick={pauseAudio} className="sendButton3">Pause All</button>
+      </div>
       <div className="parent2">
         <Link className="terms" to="./terms">{t("words.terms")}</Link>
         <Link className="privacy" to="./privacy">{t("words.privacy")}</Link>
