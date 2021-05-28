@@ -9,7 +9,7 @@ import axios from 'axios';
 function FunctionClickFile() {
     
     // Variable per guardar l'arxiu.
-    const [file] = useState();
+    const [file, setFile] = useState();
     
     // Variable per guardar el nom de l'arxiu.
     const [fileName] = useState("");
