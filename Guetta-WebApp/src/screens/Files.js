@@ -1,3 +1,4 @@
+//Dependencies
 import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -5,15 +6,13 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion} from 'framer-motion';
 import axios from 'axios';
 import downloadjs from 'downloadjs';
-
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 
 function Files() {
   const [t, i18n] = useTranslation("global");
-
-  let query = useQuery();
-
+  
+  //
   const changeLanguage = () => {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
@@ -29,14 +28,15 @@ function Files() {
     }
   }
 
+//Utilitzem la variable query per cridar a la funció useQuery() per rebre i llegir dades per GET que li passem a través del history.
   function useQuery() {
     return new URLSearchParams(useLocation().search);
-
   }
 
-  function playAudio() {
-    var selected = [];
+  let query = useQuery();
 
+  //Funció que agafa les pistes seleccionades i les reprodueix començant per el principi
+  function playAudio() {
     var drums_check = document.getElementById("drums_check");
     var bass_check = document.getElementById("bass_check");
     var other_check = document.getElementById("other_check");
@@ -74,6 +74,7 @@ function Files() {
     }
   }
 
+  //Funció que para i reinicia tots els audios de la pàgina i deselecciona totes les pistes
   function pauseAudio(){
 
     document.getElementById("drums_check").checked = false;
@@ -98,9 +99,9 @@ function Files() {
 
   }
 
+  //Funció que crida a la API per descarregar l'arxiu desitjat
   async function download(directory, filename){
   	try {
-        console.log("heyyyy")
         const res = await fetch('http://guetta-app.com:3002/download?filename='+directory+'/'+filename);
 	const blob = await res.blob();
 	downloadjs(blob, filename);
@@ -109,6 +110,7 @@ function Files() {
     }
   }
 
+  //Funció que, un cop carregada la pàgina, crea tots els elements, els checkboxes, els audios i els botons per descarregar
   function setAudio(id) {
 
     for (let m of id){
@@ -140,14 +142,14 @@ function Files() {
     }
   }
 
+  //Variable que emmagatzema el nom de la carpeta on treballar
   var file = query.get('file')
 
+  //Metode useEffect executa la petició a la api un cop carrega la pàgina, aquesta petició ens retornarà els 4 arxius d'audio a mostrar i la seva ruta
   useEffect(() => {
     async function split() {
       try {
-        console.log("heyyyy")
         const res = await axios.get("http://guetta-app.com:3002/play?file="+file);
-        console.log(res.data);
         if(res){
           setAudio(res.data)
         }
@@ -188,7 +190,6 @@ function Files() {
       </div>
       <img src={logo} className="logoHorizontal" alt="logo" />
       <div id="container_audio">
-
       </div>
       <button onClick={playAudio} className="sendButton">Play selected</button>
       <button onClick={pauseAudio} className="sendButton">Pause All</button>
