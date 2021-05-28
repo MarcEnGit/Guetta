@@ -1,14 +1,18 @@
+//Dependencies
 import logo from '../img/logo_hor_big.png';
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { motion} from 'framer-motion';
-
 import { useTranslation } from 'react-i18next';
 
+// Arxiu JS de la pàgina AboutUs.
 function AboutUs() {
+  
+  // Constant per canviar l'idioma del text per cada idioma que té la web.
   const [t, i18n] = useTranslation("global");
-
+  
+  // Constant que s'encarrega de canviar l'idioma.
   const changeLanguage = () => {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
@@ -24,6 +28,7 @@ function AboutUs() {
     }
   }
 
+  // HTML que es visualitza a l'anar a aquesta pestanya.
   return (
     <motion.div
     initial={{opacity: 0}}
