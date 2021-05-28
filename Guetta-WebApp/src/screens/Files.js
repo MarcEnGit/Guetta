@@ -14,7 +14,7 @@ import iconother_check from '../img/other_checked.png'
 import iconvocals from '../img/vocals.png'
 import iconvocals_check from '../img/vocals_checked.png'
 
-import icondownload from '../img/download.png'
+import icondownload from '../img/download_icon.png'
 import { Link, useLocation } from 'react-router-dom';
 import { motion} from 'framer-motion';
 import axios from 'axios';
@@ -123,24 +123,6 @@ function Files() {
     }
   }
 
-  /*function changeImg(id){
-    if(m.split('.')[0] === 'bass'){
-      img1.src = iconbass;
-    }
-
-    if(m.split('.')[0] === 'drums'){
-      img1.src = icondrums;
-    }
-
-    if(m.split('.')[0] === 'other'){
-      img1.src = iconother;
-    }
-
-    if(m.split('.')[0] === 'vocals'){
-      img1.src = iconvocals;
-    }
-  }*/
-
   //Funció que, un cop carregada la pàgina, crea tots els elements, els checkboxes, els audios i els botons per descarregar
   function setAudio(id) {
 
@@ -166,8 +148,8 @@ function Files() {
       label.htmlFor = m.split('.')[0]+"_check";
       label.id = m.split('.')[0]+"_label";
       
-
       var img1 = document.createElement('img');
+      img1.id = m.split('.')[0]+'_img';
       img1.className = "imgCheck"
       if(m.split('.')[0] === 'bass'){
         img1.src = iconbass;
@@ -255,7 +237,7 @@ function Files() {
       </div>
       <button onClick={playAudio} className="sendButton3">Play selected</button>
       <button onClick={pauseAudio} className="sendButton3">Pause All</button>
-      <div className="parent2">
+      <div className="parent">
         <Link className="terms" to="./terms">{t("words.terms")}</Link>
         <Link className="privacy" to="./privacy">{t("words.privacy")}</Link>
       </div>
