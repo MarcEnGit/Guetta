@@ -10,11 +10,9 @@ import { useTranslation } from 'react-i18next';
 function AboutUs() {
   
   // Variable per canviar l'idioma de la pàgina.
-  const changeLanguage = () => {
   const [t, i18n] = useTranslation("global");
   
   // Variable per canviar l'idioma de la pàgina al canviar l'opció del desplegable.
-  const changeLanguage = () => {
   const changeLanguage = () => {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
