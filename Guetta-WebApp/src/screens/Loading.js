@@ -1,3 +1,4 @@
+//Dependencies
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from "../img/logo_vertical.png";
@@ -12,7 +13,10 @@ function Loading() {
   const [t, i18n] = useTranslation("global");
   const [email, setEmail] = useState('');
   
+  //Variable on guardem la funció useHistory() per poder redirigir
   const history = useHistory();
+	
+  //Variable que guarda la informaciò que passem per POST a la API
   const formData = new FormData();
 
 	function fileNameAndExt(str){
@@ -20,10 +24,13 @@ function Loading() {
 		return file[0];
   }
 
+  //Nom de la carpeta on treballem sense extensió
   var filenameWithoutExt = fileNameAndExt(history.location.state.url);
-
+ 
+    //Afegim el nom de la carpeta de treball a la petició a la API
     formData.append("filename", history.location.state.url);
     
+    //Quan carrega la pàgina fem la petició de separar la cançó a la API
     useEffect(() => {
       async function split() {
         try {
@@ -32,6 +39,7 @@ function Loading() {
               formData
           );
  
+	  //Al acabar i rebre la resposta de la API, redirigim a l'usuari a visualitzar els arxius
 	  if(res){
                 history.push({
                 pathname: '/files',
@@ -63,6 +71,7 @@ function Loading() {
 
     const [disable, setDisable] = useState(false);
 
+    //Quan l'usuari fica el mail i clicka el butó, s'envia a l'API el email proporcionat i el fiquem a la BBDD
     const uploadEmail = async (e) => {
       setDisable(true)
       var emailText = document.getElementById('emailText').value;
