@@ -26,8 +26,8 @@ function FunctionClickFile() {
     // Funció per pujar l'arxiu mp3 a l'API.
     const uploadFile = async (e) => {
         setDisable(true)
+        setFile(e.target.files[0]);
         const formData = new FormData();
-        let file = document.getElementById('user_file').files[0];
         formData.append("file", file);
         formData.append("fileName", fileName);
         try {
