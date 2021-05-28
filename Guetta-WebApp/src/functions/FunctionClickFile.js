@@ -1,4 +1,4 @@
-//Dependencies
+// Dependencies
 import React, { useState } from 'react';
 import '../css/App.css';
 import { useTranslation } from 'react-i18next';
@@ -8,19 +8,19 @@ import axios from 'axios';
 // Arxiu JS per pujar un arxiu.
 function FunctionClickFile() {
     
-    // Constants per guardar l'arxiu.
+    // Variable per guardar l'arxiu.
     const [file] = useState();
     
-    // Constants per guardar el nom de l'arxiu.
+    // Variable per guardar el nom de l'arxiu.
     const [fileName] = useState("");
     
-    // Constant per canviar l'idioma del text per cada idioma que té la web.
+    // Variable per canviar l'idioma del text per cada idioma que té la web.
     const [t] = useTranslation("global");
     
-    // Constant per redirigir d'una pàgina a una altre.
+    // Variable per redirigir d'una pàgina a una altre.
     const history = useHistory();
 
-    // Constant per habilitar i deshabilitar el botó d'enviar l'arxiu mentre les funcions s'estàn processant.
+    // Variables per habilitar i deshabilitar el botó d'enviar l'arxiu mentre les funcions s'estàn processant.
     const [disable, setDisable] = useState(false);
     
     // Funció per pujar l'arxiu mp3 a l'API.
