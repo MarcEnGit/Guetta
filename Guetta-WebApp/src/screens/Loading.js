@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
+// Arxiu JS de la pàgina Loading.
 function Loading() {
   const [t, i18n] = useTranslation("global");
   const [email, setEmail] = useState('');
@@ -87,9 +88,8 @@ function Loading() {
       }
       setDisable(false);
   }
-
-
-
+    
+  // HTML que es visualitza quan s'executa aquesta pestanya.
   return (
     <motion.div
     initial={{opacity: 0}}
