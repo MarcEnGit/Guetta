@@ -253,7 +253,7 @@ function Files() {
       <img src={logo} className="logoHorizontal" alt="logo" />
       <div id="container_audio" className="containeraudio">
       </div>
-      <div id="containcer_buttons" className="containerbuttons">
+      <div id="container_buttons" className="containerbuttons">
       	<button onClick={playAudio} className="sendButton3">Play selected</button>
       	<button onClick={pauseAudio} className="sendButton3">Pause All</button>
       </div>
