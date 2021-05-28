@@ -12,7 +12,6 @@ import { useEffect } from 'react';
 function Files() {
   const [t, i18n] = useTranslation("global");
   
-  //
   const changeLanguage = () => {
     var selectBox = document.getElementById("selectBox");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
